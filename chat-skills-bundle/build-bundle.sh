@@ -12,8 +12,8 @@ mkdir -p "$BUILD/skills" "$BUILD/zips"
 chat=(); excluded=()
 for d in "$SK"/*/; do
   name="$(basename "$d")"
-  if find "$d" -type f \( -name '*.py' -o -name '*.js' -o -name '*.sh' \
-        -o -name '*.cjs' -o -name '*.ps1' -o -name '*.mjs' \) | grep -q .; then
+  if [ -n "$(find "$d" -type f \( -name '*.py' -o -name '*.js' -o -name '*.sh' \
+        -o -name '*.cjs' -o -name '*.ps1' -o -name '*.mjs' \) -print -quit)" ]; then
     excluded+=("$name")
   else
     chat+=("$name")
@@ -24,6 +24,7 @@ done
 
 cp "$OUT/README.md" "$OUT/MANIFEST.md" "$OUT/EXCLUDED.md" "$BUILD/" 2>/dev/null || true
 mkdir -p "$OUT/dist"
+rm -f "$OUT/dist/everything-ai-chat-skills.zip"
 (cd "$BUILD" && zip -qr "$OUT/dist/everything-ai-chat-skills.zip" .)
 echo "chat-friendly: ${#chat[@]} | excluded: ${#excluded[@]}"
 echo "bundle -> $OUT/dist/everything-ai-chat-skills.zip"

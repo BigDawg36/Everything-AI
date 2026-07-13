@@ -1,6 +1,6 @@
 # Not Included (Claude Code / machine-only)
 
-These 25 skills need a real execution environment (local files, OS tools, external CLIs/APIs, or MCP servers) that the Claude.ai chat sandbox does not provide. Keep them in Claude Code.
+These 27 skills need a real execution environment (local files, OS tools, external CLIs/APIs, or MCP servers) that the Claude.ai chat sandbox does not provide. Keep them in Claude Code.
 
 - `arcads-external-api`
 - `brainstorming`
@@ -22,8 +22,10 @@ These 25 skills need a real execution environment (local files, OS tools, extern
 - `sales`
 - `sarif-parsing`
 - `semgrep`
+- `standup`
 - `systematic-debugging`
 - `ui-ux-pro-max`
+- `version-bump`
 - `writing-skills`
 - `yara-rule-authoring`
 - `zeroize-audit`
