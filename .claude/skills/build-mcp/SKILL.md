@@ -67,19 +67,15 @@ This comprehensive document contains the complete MCP specification and guidelin
 
 #### 1.4 Study Framework Documentation
 
-**Load and read the following reference files:**
-
-- **MCP Best Practices**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Core guidelines for all MCP servers
+**Apply MCP best practices throughout:** server and tool naming conventions, response format guidelines (JSON vs Markdown), pagination, character limits and truncation strategies, and security/error-handling standards.
 
 **For Python implementations, also load:**
 
 - **Python SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Python-specific best practices and examples
 
 **For Node/TypeScript implementations, also load:**
 
 - **TypeScript SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
-- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Node/TypeScript-specific best practices and examples
 
 #### 1.5 Exhaustively Study API Documentation
 
@@ -135,13 +131,13 @@ Now that you have a comprehensive plan, begin implementation following language-
 
 **For Python:**
 
-- Create a single `.py` file or organize into modules if complex (see [🐍 Python Guide](./reference/python_mcp_server.md))
+- Create a single `.py` file or organize into modules if complex
 - Use the MCP Python SDK for tool registration
 - Define Pydantic models for input validation
 
 **For Node/TypeScript:**
 
-- Create proper project structure (see [⚡ TypeScript Guide](./reference/node_mcp_server.md))
+- Create proper project structure
 - Set up `package.json` and `tsconfig.json`
 - Use MCP TypeScript SDK
 - Define Zod schemas for input validation
@@ -194,9 +190,7 @@ For each tool in the plan:
 
 #### 2.4 Follow Language-Specific Best Practices
 
-**At this point, load the appropriate language guide:**
-
-**For Python: Load [🐍 Python Implementation Guide](./reference/python_mcp_server.md) and ensure the following:**
+**For Python, ensure the following:**
 
 - Using MCP Python SDK with proper tool registration
 - Pydantic v2 models with `model_config`
@@ -205,7 +199,7 @@ For each tool in the plan:
 - Proper imports organization
 - Module-level constants (CHARACTER_LIMIT, API_BASE_URL)
 
-**For Node/TypeScript: Load [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) and ensure the following:**
+**For Node/TypeScript, ensure the following:**
 
 - Using `server.registerTool` properly
 - Zod schemas with `.strict()`
@@ -255,20 +249,15 @@ To ensure quality, review the code for:
 - To manually test: Run server in tmux, then test with evaluation harness in main process
 - Or use the evaluation harness directly (it manages the server for stdio transport)
 
-#### 3.3 Use Quality Checklist
+#### 3.3 Final Quality Pass
 
-To verify implementation quality, load the appropriate checklist from the language-specific guide:
-
-- Python: see "Quality Checklist" in [🐍 Python Guide](./reference/python_mcp_server.md)
-- Node/TypeScript: see "Quality Checklist" in [⚡ TypeScript Guide](./reference/node_mcp_server.md)
+Before considering the server complete, re-verify every tool against the language-specific requirements in 2.4 and the code quality checklist in 3.1.
 
 ---
 
 ### Phase 4: Create Evaluations
 
 After implementing your MCP server, create comprehensive evaluations to test its effectiveness.
-
-**Load [✅ Evaluation Guide](./reference/evaluation.md) for complete evaluation guidelines.**
 
 #### 4.1 Understand Evaluation Purpose
 
@@ -310,49 +299,10 @@ Create an XML file with this structure:
 
 ---
 
-# Reference Files
+# Live Documentation Sources
 
-## 📚 Documentation Library
+Fetch these directly as needed during development:
 
-Load these resources as needed during development:
-
-### Core MCP Documentation (Load First)
-
-- **MCP Protocol**: Fetch from `https://modelcontextprotocol.io/llms-full.txt` - Complete MCP specification
-- [📋 MCP Best Practices](./reference/mcp_best_practices.md) - Universal MCP guidelines including:
-  - Server and tool naming conventions
-  - Response format guidelines (JSON vs Markdown)
-  - Pagination best practices
-  - Character limits and truncation strategies
-  - Tool development guidelines
-  - Security and error handling standards
-
-### SDK Documentation (Load During Phase 1/2)
-
-- **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
-
-### Language-Specific Implementation Guides (Load During Phase 2)
-
-- [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Complete Python/FastMCP guide with:
-  - Server initialization patterns
-  - Pydantic model examples
-  - Tool registration with `@mcp.tool`
-  - Complete working examples
-  - Quality checklist
-
-- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Complete TypeScript guide with:
-  - Project structure
-  - Zod schema patterns
-  - Tool registration with `server.registerTool`
-  - Complete working examples
-  - Quality checklist
-
-### Evaluation Guide (Load During Phase 4)
-
-- [✅ Evaluation Guide](./reference/evaluation.md) - Complete evaluation creation guide with:
-  - Question creation guidelines
-  - Answer verification strategies
-  - XML format specifications
-  - Example questions and answers
-  - Running an evaluation with the provided scripts
+- **MCP Protocol**: `https://modelcontextprotocol.io/llms-full.txt` - Complete MCP specification
+- **Python SDK**: `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- **TypeScript SDK**: `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
