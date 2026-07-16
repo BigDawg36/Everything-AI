@@ -48,7 +48,7 @@
 
 ## 4. Licensing/attribution covers only 1 of ~10 vendored collections
 
-**Status: PARTIALLY FIXED (2026-07-16).** `ATTRIBUTIONS.md` added and shipped inside the bundle. Families whose upstream URL/license were never recorded are marked *verify upstream* — confirming those still needs owner/web research.
+**Status: FIXED (2026-07-16).** `ATTRIBUTIONS.md` added, shipped inside the bundle, and every upstream verified against its repository: 11 families MIT, claude-mem Apache-2.0, context-engineering-kit **GPL-3.0** (copyleft — notice must ship with the bundle), Trail of Bits **CC-BY-SA-4.0** (attribution + ShareAlike), and two unlicensed singles (`remotion-best-practices`, `d3-viz`) flagged with a recommendation to drop them from any publicly redistributed bundle. See the license notes in `ATTRIBUTIONS.md`.
 
 **What:** `.claude/skills/LICENSE` is Corey Haines's MIT license for the 47 marketing skills. The other ~227 skills (Trail of Bits ~75, context-engineering-kit 67, PicsArt 20, claude-mem 18, superpowers 14, sales 13, caveman 7, Arcads 5, singles) were vendored with no license files or upstream attribution beyond commit messages, and the chat bundle redistributes 247 of them as zips.
 
