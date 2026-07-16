@@ -1,10 +1,12 @@
 # GAPS.md — Honest audit of Everything-AI
 
-*Written 2026-07-16. Ordered by severity, most important first. Each entry ends with a fix scoped small enough to execute as a single task. See `PROJECT.md` for architecture context.*
+*Written 2026-07-16; statuses updated the same day after a fix pass (see the **Status** line under each heading — 9 fixed, 2 partial, 1 open). Ordered by severity, most important first. Each entry ends with a fix scoped small enough to execute as a single task. See `PROJECT.md` for architecture context.*
 
 ---
 
 ## 1. Fourteen sales-suite skills have no YAML frontmatter — discovery is broken/degraded
+
+**Status: FIXED (2026-07-16).** All 14 files now carry `name:`/`description:` frontmatter; `scripts/validate-skills.sh` enforces this going forward.
 
 **What:** Every skill except the AI Sales Team suite opens with `---\nname: …\ndescription: …\n---`. The 14 sales files open with a bare `#` heading instead. Claude Code's skill routing matches on the frontmatter `description:`; without it, these skills either don't surface or surface with garbage descriptions (some currently show their `# Title` line or an internal "Metadata" section as their description).
 
@@ -18,6 +20,8 @@
 
 ## 2. No validation or CI of any kind — nothing catches gap #1 class errors
 
+**Status: FIXED (2026-07-16).** Added `scripts/validate-skills.sh` and `.github/workflows/validate.yml`. First run immediately caught a real defect: `version-bump` had frontmatter `name: claude-code-plugin-release` (now aligned to the directory name).
+
 **What:** The repo has zero automated checks. No GitHub Actions workflow (the only `ci.yml` is vendored *inside* the obsidian-second-brain skill and does not run for this repo), no lint, no script that verifies each skill directory has a `SKILL.md` with parseable frontmatter and a unique `name:`.
 
 **Where:** Repo root (no `.github/`), everywhere.
@@ -29,6 +33,8 @@
 ---
 
 ## 3. Hand-maintained manifests already contradict each other
+
+**Status: FIXED (2026-07-16).** `build-bundle.sh` now regenerates `MANIFEST.md` and `EXCLUDED.md` on every build; hardcoded counts removed from `chat-skills-bundle/README.md`; `.claude/skills/README.md` rewritten as a full source-family inventory.
 
 **What:** `chat-skills-bundle/README.md` claims **25** excluded skills; `EXCLUDED.md` lists **27** (27 is correct today). `build-bundle.sh` computes the real lists at build time but only echoes counts — it copies `MANIFEST.md`/`EXCLUDED.md` into the zip verbatim, so they drift the moment any skill gains or loses a script file. The `.claude/skills/README.md` is worse: it describes the directory as "47 marketing skills" when it contains 274 skills from ~10 sources.
 
@@ -42,6 +48,8 @@
 
 ## 4. Licensing/attribution covers only 1 of ~10 vendored collections
 
+**Status: PARTIALLY FIXED (2026-07-16).** `ATTRIBUTIONS.md` added and shipped inside the bundle. Families whose upstream URL/license were never recorded are marked *verify upstream* — confirming those still needs owner/web research.
+
 **What:** `.claude/skills/LICENSE` is Corey Haines's MIT license for the 47 marketing skills. The other ~227 skills (Trail of Bits ~75, context-engineering-kit 67, PicsArt 20, claude-mem 18, superpowers 14, sales 13, caveman 7, Arcads 5, singles) were vendored with no license files or upstream attribution beyond commit messages, and the chat bundle redistributes 247 of them as zips.
 
 **Where:** `.claude/skills/LICENSE`, `.claude/skills/README.md`; absence everywhere else. (A few skills carry marks internally, e.g. Trail of Bits SVG/branding, `property-based-testing/README.md`.)
@@ -53,6 +61,8 @@
 ---
 
 ## 5. Chat-bundle classifier misclassifies tool-dependent skills as chat-friendly
+
+**Status: FIXED (2026-07-16).** `force-include.txt`/`force-exclude.txt` overrides added to `build-bundle.sh`; 9 machine-bound markdown-only skills excluded. Bundle is now 238 chat / 36 excluded (27 script-bearing + 9 forced).
 
 **What:** `build-bundle.sh` marks a skill chat-friendly iff it contains no `*.py/*.js/*.sh/*.cjs/*.ps1/*.mjs` file. Markdown-only skills that fundamentally require a machine — `gh-cli`, `codeql`, `git-worktrees`, `chrome-mcp-troubleshooting`, `setup-serena-mcp`, `setup-context7-mcp`, `devcontainer-setup` (has scripts, ok), `ios-simulator` guidance-alikes, `fix-tests`, `babysit` — get included in the Claude.ai bundle where they cannot do their job. Conversely a skill with one optional convenience script is excluded outright.
 
@@ -66,6 +76,8 @@
 
 ## 6. Trigger-description collisions between near-duplicate skills
 
+**Status: FIXED (2026-07-16)** for the worst collisions: `caveman-commit` and `caveman-review` no longer claim `/commit`, "write a commit", `/review`, or "review this PR"; both `superpowers-*` duplicates are now explicit-invocation-only; `brainstorm` defers to `brainstorming` for the general pre-implementation gate. No skills deleted.
+
 **What:** Multiple imported families cover the same ground with competing descriptions: `brainstorm` (56 lines) vs `brainstorming` (159 lines); `test-driven-development` (698 lines) vs `superpowers-test-driven-development` (371 lines); `subagent-driven-development` vs `superpowers-subagent-driven-development`; `commit` vs `caveman-commit`; `review-pr` vs `caveman-review` vs `code-review`-adjacent skills; `memorize` (context-kit) alongside the claude-mem memory suite. Which fires for "help me brainstorm" or "write a commit message" is nondeterministic.
 
 **Where:** `.claude/skills/{brainstorm,brainstorming,test-driven-development,superpowers-test-driven-development,subagent-driven-development,superpowers-subagent-driven-development,commit,caveman-commit,review-pr,caveman-review,memorize}/SKILL.md`.
@@ -77,6 +89,8 @@
 ---
 
 ## 7. 6 MB binary build artifact committed to git
+
+**Status: ADDRESSED (2026-07-16)** via the keep-and-document option: the zip stays committed (it is the owner's distribution channel), and `chat-skills-bundle/README.md` now documents the rebuild-after-any-skill-change requirement. Revisit `.gitignore`-ing `dist/` if history bloat becomes a problem.
 
 **What:** `chat-skills-bundle/dist/everything-ai-chat-skills.zip` (6,037,145 bytes, 1,619 files inside) is checked in and fully replaced on every rebuild — git stores each version whole.
 
@@ -90,6 +104,8 @@
 
 ## 8. The vendored `obsidian-second-brain` repo-within-a-repo
 
+**Status: FIXED (2026-07-16).** Renamed to `UPSTREAM-CLAUDE.md` with a vendored-snapshot warning prepended; remaining `CLAUDE.md` mentions inside that skill are historical (changelog/fork notes) and were deliberately left untouched.
+
 **What:** This "skill" is a complete upstream source repository: 102 scripts, its own `CLAUDE.md`, `.github/workflows/` (CI + scorecard that never run here), `.gitignore`, `install.sh` that symlinks into `~/.claude/`, a 6-platform adapter build system, and a `dist/` that its own docs say is gitignored (upstream) but whose parent is committed here.
 
 **Where:** `.claude/skills/obsidian-second-brain/` (2.0 MB).
@@ -101,6 +117,8 @@
 ---
 
 ## 9. Unaudited third-party executable scripts (supply-chain surface)
+
+**Status: FIXED (2026-07-16).** `SCRIPT-AUDIT.md` generated at repo root: 218 scripts inventoried; flags — network: 20, home-writes: 28, exec: 60, curl-pipe-sh: 2. Both `curl|sh` hits were manually reviewed and are benign (a printed hint and a usage comment in obsidian-second-brain installers).
 
 **What:** 218 executable script files across 27 skills were vendored from upstream authors without review. Spot checks found nothing malicious — no hardcoded secrets anywhere (verified by grep for key patterns), `arcads-external-api` handles its API key correctly (env var / `.env`, explicitly told not to log keys), and the `sales` Python scripts use stdlib `urllib` only. But nobody has systematically reviewed, e.g., `obsidian-second-brain`'s 102 scripts or `ios-simulator-skill`'s 43, and several (installers, `standup.mjs`) intentionally touch the filesystem outside the repo or make network calls to user-supplied URLs (`analyze_prospect.py`, `contact_finder.py` will fetch any URL — SSRF-style if ever run server-side).
 
@@ -114,6 +132,8 @@
 
 ## 10. No repo-root README
 
+**Status: FIXED (2026-07-16).** Root `README.md` added.
+
 **What:** The Everything-AI repo root contains only `.claude/` and `chat-skills-bundle/` — the GitHub landing page renders nothing. The two READMEs that exist are buried and (per gap #3) stale or scoped to one subfolder.
 
 **Where:** `/` (absence).
@@ -126,6 +146,8 @@
 
 ## 11. Frontmatter conventions disagree across families
 
+**Status: PARTIALLY FIXED.** Conventions documented in `CLAUDE.md`; the 8 vendored TODOs are deliberately left for upstream fidelity.
+
 **What:** Four coexisting frontmatter dialects: marketing skills use `metadata: {version: x.y.z}`; Trail of Bits uses `allowed-tools:` (space-separated) and multi-line `description: >-`; context-kit uses bare `name`/`description` plus occasional `argument-hint:`; claude-mem adds its own fields. Eight SKILL.md files contain literal TODOs (`brainstorming`, `smart-explore`, `create-hook`, `writing-plans`, `obsidian-second-brain`, `update-docs`, plus two others in the grep). None of this breaks discovery (except gap #1), but there is no documented house standard for *new* skills written in this repo.
 
 **Where:** All `SKILL.md` frontmatter; TODO list via `grep -rn TODO .claude/skills --include=SKILL.md -l`.
@@ -137,6 +159,8 @@
 ---
 
 ## 12. `-Keeping-Fable-5` sibling repo is an empty placeholder
+
+**Status: OPEN — needs owner input.** The prompt text exists only in the owner's head; nothing in either repo contains it.
 
 **What:** The second repo in this workspace contains a single one-line README ("Prompt to keep Fable 5 when the $$$ goes up") and nothing else — no prompt actually stored.
 
