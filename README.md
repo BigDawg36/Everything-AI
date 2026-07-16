@@ -36,3 +36,4 @@ Rebuild the bundle after any skill change. Skill `description:` frontmatter is l
 - `CLAUDE.md` — operational instructions loaded by Claude Code sessions.
 - `ATTRIBUTIONS.md` — upstream sources and licenses.
 - `SCRIPT-AUDIT.md` — mechanical risk inventory of the 218 vendored scripts.
+- `KNOWLEDGE-TRANSFER-PROMPT.md` — the reusable prompt that generated PROJECT.md, GAPS.md, and CLAUDE.md.
