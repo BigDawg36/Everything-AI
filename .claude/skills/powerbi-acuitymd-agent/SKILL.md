@@ -73,10 +73,12 @@ in plain language ("who should Dave call this week?", "refresh the dashboard",
 
 Goal: hand a rep a ranked, *actionable* list of accounts/physicians to pursue.
 
-1. **Pull from AcuityMD** using `scripts/acuitymd_client.py` (API) or, if there's
-   no API access, the browser-export path in `references/acuitymd-connection.md`.
-   Pull the fields in `references/medtech-metrics.md` (procedure volume & trend,
-   site of care, payer mix, current-vendor signals, affiliations).
+1. **Pull from AcuityMD** via **browser export** — this org has no AcuityMD API,
+   so use `scripts/acuitymd_client.py --browser` (or the `playwright-skill`) to
+   log in, apply filters on a saved list/provider view, and download the export.
+   See `references/acuitymd-connection.md`. Pull the fields in
+   `references/medtech-metrics.md` (procedure volume & trend, site of care, payer
+   mix, current-vendor signals, affiliations).
 2. **Cross-reference Power BI** — pull the account's current revenue/penetration
    from Power BI so you can separate *whitespace* (no business yet) from
    *grow/defend* accounts. Use `scripts/powerbi_client.py`.
@@ -96,9 +98,10 @@ Always show the inputs behind a score. A rep must be able to argue with it.
 
 ### 2. Refresh the command center — `/pbi-acuity command-center`
 
-The command-center website is fed by data you export here. Do **not** guess its
-schema — read `templates/command-center-data.md` for the exact JSON contract the
-site expects, then populate it from Power BI.
+The command-center website (**https://imsc-sales-command-center.netlify.app/**,
+hosted on Netlify) is fed by data you export here. Do **not** guess its schema —
+read `templates/command-center-data.md`, confirm the real contract from the
+site's source on first use, then populate it from Power BI.
 
 1. Pull the command-center KPI set from Power BI via DAX (queries defined in
    `references/powerbi-connection.md` → "Command-center queries").

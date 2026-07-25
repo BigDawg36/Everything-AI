@@ -1,54 +1,18 @@
 # AcuityMD connection
 
-AcuityMD is a proprietary medtech commercial-intelligence platform. Access to
-its data programmatically comes in two ways. **Prefer the API.** Fall back to
-browser automation only when API access isn't provisioned.
+AcuityMD is a proprietary medtech commercial-intelligence platform.
+
+> **This org has browser-export access only — no API.** Path 1 below (browser
+> automation) is the one to use. Path 2 (the API) is kept for reference in case
+> an API entitlement is added later, but don't reach for it now.
 
 ---
 
-## Path 1 — AcuityMD API (preferred)
+## Path 1 — Browser automation (the path for this org)
 
-AcuityMD offers API / data-integration access to enterprise customers. It is not
-a public, self-serve API — you have to have it turned on for your org.
-
-**To get access:** ask your AcuityMD **admin or Customer Success Manager** for
-API credentials (a base URL + API token / OAuth client). Confirm:
-- the **base URL** for your tenant's API,
-- the **auth scheme** (usually a bearer token or OAuth2 client-credentials),
-- which **objects** you're entitled to (accounts/facilities, providers,
-  procedures, territories, saved lists/targets),
-- rate limits.
-
-Set in `.env`:
-
-```
-ACUITYMD_BASE_URL=https://api.acuitymd.com   # confirm the real host with your CSM
-ACUITYMD_API_TOKEN=...                        # bearer token, OR:
-ACUITYMD_CLIENT_ID=...
-ACUITYMD_CLIENT_SECRET=...
-ACUITYMD_TERRITORY=...                         # default territory filter
-```
-
-`scripts/acuitymd_client.py` is written against a conventional REST shape
-(bearer auth, `/providers`, `/accounts`, `/procedures` with query filters and
-cursor pagination). **Because tenants differ, treat the endpoint paths as
-placeholders** — verify them against the API docs your CSM provides and adjust
-the `ENDPOINTS` map at the top of the script. The script is structured so that's
-a one-line change per endpoint.
-
-What to pull (map to `references/medtech-metrics.md`):
-- Providers/facilities in territory with **procedure volumes** and **trend**.
-- **Site of care** (HOPD vs. ASC vs. office) and payer mix where available.
-- **Competitive / current-vendor** signals.
-- Existing **saved lists / targets** so you don't duplicate the rep's work.
-
----
-
-## Path 2 — Browser automation fallback (no API)
-
-If the org has no API entitlement, log in through the web app and export, using
-Playwright. The repo already ships a `playwright-skill` — reuse its runner, or
-use `scripts/acuitymd_client.py --browser` which drives a headed/headless login.
+Log in through the web app and export, using Playwright. The repo already ships
+a `playwright-skill` — reuse its runner, or use `scripts/acuitymd_client.py
+--browser`, which drives a headed/headless login and downloads the export.
 
 **Credentials** (never hard-code — pull from env):
 
@@ -77,6 +41,17 @@ chasing selectors.
 > **Respect the platform's terms.** Automate your *own* authenticated session for
 > your own account's data and normal export features. Don't scrape at volumes or
 > in ways your AcuityMD agreement prohibits — check with your CSM if unsure.
+
+---
+
+## Path 2 — AcuityMD API (reference only — not available to this org)
+
+Not currently usable here (no API entitlement). If AcuityMD ever turns on API
+access for the org, ask the CSM for the base URL + auth (bearer token or OAuth2
+client-credentials) and the entitled objects, then set `ACUITYMD_BASE_URL` and
+`ACUITYMD_API_TOKEN` (or the client-id/secret pair) in `.env` and run
+`acuitymd_client.py --api`. The endpoint paths in that script's `ENDPOINTS` map
+are placeholders to verify against the real API docs. Until then, use Path 1.
 
 ---
 

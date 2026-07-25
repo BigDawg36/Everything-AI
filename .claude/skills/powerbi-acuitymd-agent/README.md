@@ -26,9 +26,14 @@ agent**. It connects to **AcuityMD** (target/account intelligence) and
 - **Power BI** → official REST API via Entra ID. Use a **service principal**
   (unattended) or **device-code** sign-in (MFA-friendly). Reads run through the
   `executeQueries` (DAX) endpoint; rendered exports via `ExportTo`.
-- **AcuityMD** → the **API** if your org has it provisioned (ask your CSM), with
-  a **Playwright browser-login fallback** that reuses a saved session for orgs
-  without API access.
+- **AcuityMD** → **Playwright browser login + export** (this org has no AcuityMD
+  API). Log in once interactively to clear SSO/MFA; the session is saved and
+  reused, then list exports are downloaded as CSV/XLSX. (An API path exists in
+  the code for later, if an entitlement is ever added.)
+
+The command center is the Netlify site
+**https://imsc-sales-command-center.netlify.app/**; `/pbi-acuity command-center`
+produces the JSON it reads and can publish via Netlify.
 
 ## Notes
 
