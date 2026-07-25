@@ -19,8 +19,9 @@ import json
 from pathlib import Path
 
 from . import __version__
-from .analysis.scoring import score_targets, tier_summary
+from .analysis.scoring import resolve_weights, score_targets, tier_summary
 from .analysis.trends import analyze, quota_attainment
+from .enrich.npi import enrich_targets, load_sidecar
 from .ingest import load_metrics, load_reps, load_settings, load_targets
 from .reports.powerbi_spec import build_powerbi_spec
 from .reports.rep_report import build_rep_report
@@ -36,9 +37,8 @@ def _load_all(args):
     reps = load_reps(args.reps) if args.reps else []
     targets = load_targets(args.targets) if args.targets else []
     metrics = load_metrics(args.metrics) if args.metrics else []
-    weights = (settings.get("scoring") or {}).get("weights")
     if targets:
-        score_targets(targets, weights)
+        score_targets(targets, resolve_weights(settings, getattr(args, "profile", None)))
     return settings, reps, targets, metrics
 
 
@@ -55,6 +55,38 @@ def cmd_targets(args):
         print("  Top 3:")
         for t in targets[:3]:
             print(f"    {t.tier}  {t.score:>5}  {t.name}  ({_fmt_money(t.est_annual_value)})")
+
+
+def cmd_enrich(args):
+    """Validate + enrich targets against the NPPES NPI registry."""
+    settings, _, targets, _ = _load_all(args)
+    if not targets:
+        raise SystemExit("Provide --targets <csv> to enrich.")
+    sidecar = load_sidecar(args.npi_data) if args.npi_data else {}
+    records, summary = enrich_targets(targets, sidecar=sidecar, online=not args.offline)
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    _write_targets_csv(targets, out / "targets_enriched.csv")
+    (out / "npi_validation.json").write_text(
+        json.dumps({"summary": summary, "records": [r.as_dict() for r in records]},
+                   indent=2, default=str)
+    )
+
+    total = len(targets)
+    print(f"Enriched {total} targets -> {out / 'targets_enriched.csv'}")
+    print(f"  verified={summary['verified']}  not_found={summary['not_found']}  "
+          f"invalid={summary['invalid']}  unchecked={summary['unchecked']}  "
+          f"missing_npi={summary['missing_npi']}")
+    bad = [r for r in records if r.status == "invalid"]
+    if bad:
+        print("  ⚠ Invalid NPIs (fix at the source):")
+        for r in bad:
+            match = next((t.name for t in targets if t.npi == r.npi), r.npi)
+            print(f"      {r.npi}  {match}")
+    if summary["unchecked"]:
+        print("  note: NPPES was unreachable for some records — format validated only.")
+    print(f"  detail -> {out / 'npi_validation.json'}")
 
 
 def cmd_trends(args):
@@ -179,10 +211,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--reps", help="Rep roster YAML")
     p.add_argument("--settings", help="Settings YAML")
     p.add_argument("--out", default="data/out", help="Output directory (default: data/out)")
+    p.add_argument("--profile", help="Scoring profile: balanced | implant | capital | disposable | service_line")
     p.add_argument("--powerbi-embed-url", default="", help="Power BI publish-to-web iframe URL for the site")
     p.add_argument("--generated-at", default="", help="Timestamp label for the site footer")
 
     sub = p.add_subparsers(dest="command", required=True)
+
+    enrich = sub.add_parser("enrich", help="Validate/enrich targets via the NPI registry")
+    enrich.add_argument("--npi-data", help="JSON sidecar of pre-fetched NPPES records")
+    enrich.add_argument("--offline", action="store_true", help="Skip network; validate NPI format only")
+    enrich.set_defaults(func=cmd_enrich)
+
     for name, fn, help_ in [
         ("targets", cmd_targets, "Score AcuityMD targets"),
         ("trends", cmd_trends, "Analyze metric trends"),

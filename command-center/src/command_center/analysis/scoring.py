@@ -16,7 +16,76 @@ DEFAULT_WEIGHTS = {
     "freshness": 0.05,     # penalize stale/never-touched when engaged
 }
 
+# Named profiles for common medical-device sales motions. The right weighting
+# genuinely differs by what you sell — pick the closest and tune from there.
+PROFILES = {
+    # Balanced default.
+    "balanced": DEFAULT_WEIGHTS,
+
+    # Implants / high-ASP constructs: a few big accounts dominate. Deal size and
+    # displacing the incumbent matter far more than raw case count.
+    "implant": {
+        "opportunity": 0.45, "volume": 0.15, "displaceable": 0.25,
+        "growth": 0.10, "freshness": 0.05,
+    },
+
+    # Capital equipment: long cycles, few buyers. Budget-sized opportunity and
+    # growth (is the service line expanding?) dominate; incumbent share matters
+    # less because it's a purchase, not a conversion.
+    "capital": {
+        "opportunity": 0.50, "volume": 0.10, "displaceable": 0.10,
+        "growth": 0.25, "freshness": 0.05,
+    },
+
+    # Disposables / consumables: revenue tracks case volume almost linearly, and
+    # share-of-wallet conversion is the whole game.
+    "disposable": {
+        "opportunity": 0.20, "volume": 0.40, "displaceable": 0.30,
+        "growth": 0.05, "freshness": 0.05,
+    },
+
+    # Service-line / hospital partnership plays: chase growth and engagement
+    # recency over pure deal size.
+    "service_line": {
+        "opportunity": 0.25, "volume": 0.25, "displaceable": 0.10,
+        "growth": 0.30, "freshness": 0.10,
+    },
+}
+
 TIERS = [(80, "A"), (60, "B"), (40, "C"), (0, "D")]
+
+
+def resolve_weights(settings: dict | None = None, profile: str | None = None) -> dict:
+    """Resolve scoring weights.
+
+    Precedence, most-specific wins:
+
+    1. ``--profile X`` on the CLI → exactly ``PROFILES[X]``. An explicit flag is
+       an explicit choice, so settings-file ``weights`` do **not** silently
+       override it (that made ``--profile`` a no-op whenever the settings file
+       happened to define weights).
+    2. Otherwise → ``PROFILES[settings.scoring.profile or "balanced"]`` with
+       ``settings.scoring.weights`` layered on top as hand-tuned overrides.
+    """
+    settings = settings or {}
+    scoring = settings.get("scoring") or {}
+
+    if profile:
+        base = PROFILES.get(profile)
+        if base is None:
+            raise ValueError(
+                f"Unknown scoring profile {profile!r}. Choose one of: {', '.join(sorted(PROFILES))}"
+            )
+        return dict(base)
+
+    name = scoring.get("profile") or "balanced"
+    base = PROFILES.get(name)
+    if base is None:
+        raise ValueError(
+            f"Unknown scoring profile {name!r} in settings. "
+            f"Choose one of: {', '.join(sorted(PROFILES))}"
+        )
+    return {**base, **(scoring.get("weights") or {})}
 
 
 def _normalize(values: list[float]) -> dict[int, float]:

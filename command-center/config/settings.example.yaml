@@ -11,15 +11,27 @@ metrics:
   # attainment and the leaderboard).
   revenue_key: "revenue"
 
-# Target scoring weights (must be meaningful relative to each other; they are
-# blended into a 0-100 score). Retune to your sales motion.
+# Target scoring. Pick the profile closest to what you sell; the weights are
+# blended into a transparent 0-100 score.
+#
+#   balanced      general purpose (default)
+#   implant       high-ASP constructs — deal size + displacing the incumbent
+#   capital       long-cycle equipment — budget-sized opportunity + growth
+#   disposable    consumables — case volume + share-of-wallet conversion
+#   service_line  hospital partnership plays — growth + engagement recency
+#
+# `command-center --profile <name>` overrides this for a single run.
 scoring:
-  weights:
-    opportunity: 0.35    # est. annual $ value
-    volume: 0.25         # procedure volume
-    displaceable: 0.20   # competitor share you could win
-    growth: 0.15         # YoY growth in relevant volume
-    freshness: 0.05      # nudge stale engaged accounts up the list
+  profile: balanced
+
+  # OPTIONAL hand-tuning: uncomment to layer overrides on the profile above.
+  # (Ignored when --profile is passed explicitly on the command line.)
+  # weights:
+  #   opportunity: 0.35    # est. annual $ value
+  #   volume: 0.25         # procedure volume
+  #   displaceable: 0.20   # competitor share you could win
+  #   growth: 0.15         # YoY growth in relevant volume
+  #   freshness: 0.05      # nudge stale engaged accounts up the list
 
 # ---- Browser layer (optional; only needed for `command-center pull`) ----
 # Selectors are account/version specific. Inspect the page and adjust.

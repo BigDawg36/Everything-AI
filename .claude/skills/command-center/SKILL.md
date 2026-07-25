@@ -41,10 +41,10 @@ Prefer driving that app — it is tested and deterministic — over improvising.
 ## The pipeline
 
 ```
-AcuityMD  ──► targets CSV ──►  score  ──►┐
-                                          ├─► rep reports ─┐
-Power BI  ──► metrics CSV ──►  trends ──►─┤                ├─► command-center site
-                                          └─► Power BI spec ┘
+AcuityMD ─► targets CSV ─► enrich (NPI) ─► score ─┐
+                                                   ├─► rep reports ──┐
+Power BI ─► metrics CSV ─► trends ────────────────┤                  ├─► command-center site
+                                                   └─► Power BI spec ┘
 ```
 
 Run the whole thing:
@@ -75,19 +75,56 @@ Sub-commands `targets`, `trends`, `reps`, `powerbi`, `site` run each stage alone
    First run: no `--headless`, so a window opens and they sign in (SSO/MFA).
    Selectors live in `config/settings.yaml → acuitymd` and may need tweaking per
    account — inspect the page and adjust if the export/table isn't found.
-2. **Score & prioritize.** Run `... --targets <csv> targets`. This writes
-   `targets_scored.csv` with a transparent 0-100 score and A/B/C/D tiers
-   (weights in `config/settings.yaml → scoring`). Present the A/B tier list,
-   grouped by rep/territory, with the "why" (opportunity, volume, displaceable
-   competitor share, growth).
-3. **Enrich (optional, no AcuityMD needed).** These MCP tools sharpen a target
-   list and work with only the target names/NPIs:
-   - `mcp__NPI_Registry__npi_lookup` / `npi_search` — validate NPIs, confirm
-     specialty/taxonomy, find peers at the same facility.
-   - `mcp__Clinical_Trials__search_investigators` / `search_by_sponsor` — spot
-     KOLs and high-volume investigators near a territory.
-   - `mcp__PubMed__search_articles` — flag publishing physicians (influence).
-   Fold findings into the target's `notes` and re-score if it changes the signal.
+2. **Validate & enrich against the NPI registry.** Run this *before* scoring —
+   it catches typo'd NPIs and corrects specialties:
+   ```bash
+   python -m command_center --targets data/raw/acuitymd_targets.csv \
+     --out data/out enrich
+   ```
+   Writes `targets_enriched.csv` + `npi_validation.json`. Every target lands in
+   one of four states — report them honestly:
+   - `verified` — found in NPPES; specialty/address/phone merged in.
+   - `not_found` — well-formed NPI, no registry record. Flag for the rep.
+   - `invalid` — fails the check digit. A **typo**; fix it at the source.
+   - `unchecked` — NPPES unreachable (proxy/offline); format validated only.
+
+   The app calls the public NPPES API directly (free, no auth). If the network
+   blocks it, use the MCP tools and feed the results in as a sidecar:
+   `mcp__NPI_Registry__npi_lookup` / `npi_search` → write
+   `{"<npi>": {...}}` JSON → `enrich --npi-data <file.json> --offline`.
+
+   **NPPES gotcha:** the registry spells it **"Orthopaedic Surgery"**.
+   Searching `"Orthopedic Surgery"` returns *zero* results — "Orthopedic" only
+   appears in physical-therapy/chiropractic taxonomies. Use a wildcard
+   (`Orthopaedic*`) when unsure. The app's `normalize_taxonomy()` maps the
+   common colloquial names for you. Note also that NPPES city filtering is
+   loose — it returns nearby cities too, so filter results yourself.
+
+3. **Score & prioritize.** Run `... --targets <enriched csv> targets`. Writes
+   `targets_scored.csv` with a transparent 0-100 score and A/B/C/D tiers.
+   Pick the **scoring profile** matching what they sell — this materially
+   changes the ranking, so ask if you don't know:
+
+   | Profile | For | Weights toward |
+   |---|---|---|
+   | `balanced` | general (default) | even blend |
+   | `implant` | high-ASP constructs | deal size + displacing incumbent |
+   | `capital` | long-cycle equipment | opportunity size + growth |
+   | `disposable` | consumables | case volume + share-of-wallet |
+   | `service_line` | hospital partnerships | growth + engagement recency |
+
+   `--profile capital` overrides settings for one run; `scoring.profile` in
+   settings sets the default. (An explicit `--profile` flag wins outright —
+   settings `weights` overrides are ignored for that run.)
+
+   Present the A/B tier list grouped by rep/territory with the "why"
+   (opportunity, volume, displaceable competitor share, growth).
+
+4. **Deepen (optional).** If the servers are connected:
+   `mcp__Clinical_Trials__search_investigators` spots KOLs and high-volume
+   investigators near a territory; `mcp__PubMed__search_articles` flags
+   publishing physicians (influence). Fold findings into `notes` and re-score
+   if it changes the signal.
 
 ### 2. "Build / refresh a Power BI sales report"
 1. Generate the spec: `... powerbi` → writes `data/out/powerbi/` with

@@ -31,6 +31,7 @@ interactively. Credentials are never handled by any code here.
 | Capability | How |
 |---|---|
 | Find & prioritize AcuityMD targets | Browser-pull or CSV export → transparent 0-100 score + A/B/C/D tiers |
+| Validate & enrich targets | Free public **NPPES NPI registry** — catches typo'd NPIs, corrects specialties, fills address/phone |
 | Analyze sales trends | Per-(rep, metric) direction, MoM change, forecast, anomaly flags |
 | Per-rep reports | Markdown pack: quota attainment, trends, "what to focus on," top targets |
 | Power BI report | **Generates** `model.json` + `measures.dax` + `report-layout.md` to build once in Power BI Desktop; automates the repeatable data export |
@@ -52,8 +53,10 @@ command-center/
     ├── models.py               Target / Metric / Rep (tolerant CSV parsing)
     ├── ingest.py               CSV/YAML → models (tidy + wide-format metrics)
     ├── analysis/
-    │   ├── scoring.py          weighted 0-100 target score + tiers
+    │   ├── scoring.py          weighted 0-100 target score + tiers + profiles
     │   └── trends.py           slope/MoM/forecast/anomaly + quota attainment
+    ├── enrich/
+    │   └── npi.py              NPI Luhn validation + NPPES registry enrichment
     ├── reports/
     │   ├── rep_report.py       per-rep Markdown packs
     │   └── powerbi_spec.py     model.json + measures.dax + layout guide
@@ -92,6 +95,66 @@ Then copy the example configs and point them at your team:
 cp config/reps.example.yaml config/reps.yaml
 cp config/settings.example.yaml config/settings.yaml
 ```
+
+## Validating targets against the NPI registry
+
+Run this *before* scoring — it catches bad data at the source:
+
+```bash
+PYTHONPATH=src python -m command_center --targets data/raw/acuitymd_targets.csv \
+  --out data/out enrich
+```
+
+Every target lands in one of four honest states:
+
+| State | Meaning | What to do |
+|---|---|---|
+| `verified` | Found in NPPES; specialty/address/phone merged in | Nothing — trust it |
+| `not_found` | Well-formed NPI, no registry record | Have the rep confirm |
+| `invalid` | Fails the check digit | It's a **typo** — fix at the source |
+| `unchecked` | NPPES unreachable (proxy/offline) | Format validated only |
+
+The app calls the **public NPPES API** directly — free, no key, no auth. If your
+network blocks it, enrichment degrades to validation-only rather than crashing;
+you can also supply pre-fetched records:
+
+```bash
+... enrich --npi-data npi_records.json --offline
+```
+
+> **NPPES gotcha:** the registry spells the surgical taxonomy **"Orthopaedic
+> Surgery"**. Searching `"Orthopedic Surgery"` returns *zero* results —
+> "Orthopedic" appears only in physical-therapy/chiropractic taxonomies.
+> `normalize_taxonomy()` maps the common colloquial names for you.
+
+The bundled `sample_data/acuitymd_targets.csv` is fictional; its NPIs are
+synthetic (they won't resolve in NPPES), and one is *deliberately* given a bad
+check digit so `enrich` has a real typo to catch.
+
+## Scoring profiles
+
+The right weighting genuinely differs by what you sell. Pick the closest:
+
+| Profile | For | Weights toward |
+|---|---|---|
+| `balanced` | general purpose (default) | even blend |
+| `implant` | high-ASP constructs | deal size + displacing the incumbent |
+| `capital` | long-cycle equipment | opportunity size + growth |
+| `disposable` | consumables | case volume + share-of-wallet conversion |
+| `service_line` | hospital partnerships | growth + engagement recency |
+
+```bash
+... --profile capital targets      # one-off override
+```
+
+Or set `scoring.profile` in `config/settings.yaml` as the default, with an
+optional `scoring.weights` block to hand-tune individual numbers. An explicit
+`--profile` flag wins outright — settings `weights` are ignored for that run, so
+the flag can never be a silent no-op.
+
+These are not cosmetic: on the sample data, a low-volume/high-value/fast-growing
+target ranks **#6 (D-tier)** under `disposable` but **#3 (B-tier)** under
+`capital`.
 
 ## Pulling live data (optional browser layer)
 
