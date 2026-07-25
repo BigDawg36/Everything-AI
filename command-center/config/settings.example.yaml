@@ -1,0 +1,35 @@
+# Command-center settings. Copy to settings.yaml and edit.
+
+site:
+  title: "Sales Command Center"
+  # After you Publish-to-web (or Embed) your Power BI report, paste the iframe
+  # src URL here to embed it inside the command-center site. Leave blank to omit.
+  powerbi_embed_url: ""
+
+metrics:
+  # Which metric name in your data represents booked revenue (used for quota
+  # attainment and the leaderboard).
+  revenue_key: "revenue"
+
+# Target scoring weights (must be meaningful relative to each other; they are
+# blended into a 0-100 score). Retune to your sales motion.
+scoring:
+  weights:
+    opportunity: 0.35    # est. annual $ value
+    volume: 0.25         # procedure volume
+    displaceable: 0.20   # competitor share you could win
+    growth: 0.15         # YoY growth in relevant volume
+    freshness: 0.05      # nudge stale engaged accounts up the list
+
+# ---- Browser layer (optional; only needed for `command-center pull`) ----
+# Selectors are account/version specific. Inspect the page and adjust.
+acuitymd:
+  logged_in_selector: "nav"         # an element that only shows when signed in
+  export_selector: "text=Export"    # AcuityMD's export control
+  table_selector: "table"           # fallback scrape target
+
+powerbi:
+  logged_in_selector: "[aria-label='Power BI']"
+  # The "More options (...)" button on the specific visual you export from.
+  visual_more_options_selector: "button[aria-label='More options']"
+  export_menu_selector: "text=Export data"

@@ -1,0 +1,11 @@
+name,npi,specialty,facility,city,state,territory,rep,procedure_volume,est_annual_value,competitor_share,growth_rate,status,last_touch,source
+Dr. Alicia Romero,1417009323,Orthopedic Surgery,Newport Ortho Institute,Newport Beach,CA,OC-North,Jordan Lee,420,320000,0.7,12,prospect,,acuitymd
+Dr. Ben Tanaka,1730123456,Orthopedic Surgery,Hoag Orthopedic,Irvine,CA,OC-North,Jordan Lee,510,410000,0.4,8,engaged,2026-05-02,acuitymd
+Dr. Carol Nguyen,1902234567,Sports Medicine,UCI Health,Orange,CA,OC-North,Jordan Lee,180,140000,0.9,22,prospect,,acuitymd
+Dr. David Okafor,1114345678,Orthopedic Surgery,Mission Ortho,Mission Viejo,CA,OC-South,Priya Shah,610,520000,0.55,15,prospect,,acuitymd
+Dr. Elena Vasquez,1326456789,Spine Surgery,Saddleback Spine,Laguna Hills,CA,OC-South,Priya Shah,90,300000,0.3,5,engaged,,acuitymd
+Dr. Frank Muller,1538567890,Orthopedic Surgery,South Coast Ortho,Santa Ana,CA,OC-South,Priya Shah,240,190000,0.65,-3,customer,2026-06-11,acuitymd
+Dr. Grace Kim,1740678901,Sports Medicine,LA Sports Med Group,Pasadena,CA,LA-East,Marcus Bell,330,260000,0.8,18,prospect,,acuitymd
+Dr. Henry Patel,1952789012,Orthopedic Surgery,Huntington Ortho,Pasadena,CA,LA-East,Marcus Bell,720,650000,0.45,10,prospect,,acuitymd
+Dr. Irene Cho,1164890123,Spine Surgery,East LA Spine Center,Los Angeles,CA,LA-East,Marcus Bell,150,410000,0.6,25,engaged,2026-04-20,acuitymd
+Dr. Jamal Wright,1376901234,Orthopedic Surgery,Glendale Ortho,Glendale,CA,LA-East,Marcus Bell,200,175000,0.5,2,customer,,acuitymd
