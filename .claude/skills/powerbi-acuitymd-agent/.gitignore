@@ -1,0 +1,19 @@
+# Secrets — never commit
+.env
+*.env
+*token_cache*.json
+.acuitymd_state.json
+
+# Data pulls & generated reports (confidential; keep out of git)
+*.csv
+*.xlsx
+command-center-data.json
+TARGETS-*.md
+REP-*.md
+TRENDS-*.md
+SALES-BRIEF-*.md
+report_export.*
+
+# Python
+__pycache__/
+*.pyc

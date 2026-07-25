@@ -1,0 +1,8 @@
+# Power BI + AcuityMD sales agent — Python dependencies
+# Install:  pip install -r requirements.txt
+#           python -m playwright install chromium   # only if using the browser fallback
+
+msal>=1.28          # Entra ID auth for Power BI (service principal + device code)
+requests>=2.31      # REST calls to Power BI and AcuityMD APIs
+playwright>=1.44    # AcuityMD browser-login fallback (optional; API path needs neither)
+# analyze_trends.py uses only the Python standard library.
