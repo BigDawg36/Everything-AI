@@ -39,7 +39,19 @@ Then update the version and commit in the table above.
 
 ## Runtime dependencies
 
-Needs `yt-dlp` and `ffmpeg` on `PATH`; `scripts/setup.py` installs them on first
-run (`brew` on macOS, printed instructions elsewhere). Neither is preinstalled in
-Claude Code cloud containers, so the first `/watch` there pays the install cost.
-A Whisper API key (Groq or OpenAI) is only needed for videos with no captions.
+Needs `yt-dlp`, `ffmpeg`, and `ffprobe` on `PATH`; `scripts/setup.py` installs
+them on first run (`brew` on macOS, printed instructions elsewhere). None are
+preinstalled in Claude Code cloud containers, so the first `/watch` there pays
+the install cost. On Ubuntu containers, `pip install yt-dlp` plus
+`apt-get update && apt-get install -y --no-install-recommends ffmpeg` works;
+skip the `apt-get update` and the archive fetch 404s on stale indexes. A Whisper
+API key (Groq or OpenAI) is only needed for videos with no captions.
+
+## Network policy limits URL sources in cloud sessions
+
+Verified in a Claude Code web session: the agent proxy denies `CONNECT` to
+video hosts (`youtube.com`, `vimeo.com` both 403 at the gateway), so `/watch
+<url>` cannot fetch anything there regardless of `yt-dlp` being installed.
+Local file paths work fully — frame extraction and `Read` of the JPEGs both
+verified end to end. Whether URLs work depends on the environment's network
+policy, so this is a per-environment limit, not a property of the skill.
