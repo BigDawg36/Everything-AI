@@ -1,7 +1,7 @@
 # Chat Skills Manifest
 
 Chat-friendly skills packaged for upload to **Claude.ai → Settings → Capabilities → Skills**.
-Generated from the Everything-AI skill collection. Total: 247 skills.
+Generated from the Everything-AI skill collection. Total: 248 skills.
 
 | # | Skill | Description |
 |---|-------|-------------|
@@ -20,8 +20,8 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 13 | `agentic-actions-auditor` | "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations including Claude Code Action, Gemini CLI, OpenAI Codex, and GitHub AI Inf |
 | 14 | `ai-seo` | "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,'  |
 | 15 | `algorand-vulnerability-scanner` | Scans Algorand smart contracts for 11 common vulnerabilities including rekeying attacks, unchecked transaction fees, missing field validations, and access contr |
-| 16 | `analyse-problem` | Comprehensive A3 one-page problem analysis with root cause and action plan |
-| 17 | `analyse` | Auto-selects best Kaizen method (Gemba Walk, Value Stream, or Muda) for target |
+| 16 | `analyse` | Auto-selects best Kaizen method (Gemba Walk, Value Stream, or Muda) for target |
+| 17 | `analyse-problem` | Comprehensive A3 one-page problem analysis with root cause and action plan |
 | 18 | `analytics` | When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics |
 | 19 | `analyze-issue` | Analyze a GitHub issue and create a detailed technical specification |
 | 20 | `apply-anthropic-skill-best-practices` | Comprehensive guide for skill development based on Anthropic's official best practices - use for complex skills requiring detailed structure |
@@ -40,11 +40,11 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 33 | `cargo-fuzz` |  cargo-fuzz is the de facto fuzzing tool for Rust projects using Cargo. Use for fuzzing Rust code with libFuzzer backend. |
 | 34 | `cause-and-effect` | Systematic Fishbone analysis exploring problem causes across six categories |
 | 35 | `cavecrew` |  Decision guide for delegating to caveman-style subagents. Tells the main thread WHEN to spawn `cavecrew-investigator` (locate code), `cavecrew-builder` (1-2 fi |
-| 36 | `caveman-commit` |  Ultra-compressed commit message generator. Cuts noise from commit messages while preserving intent and reasoning. Conventional Commits format. Subject ≤50 ch |
-| 37 | `caveman-help` |  Quick-reference card for all caveman modes, skills, and commands. One-shot display, not a persistent mode. Trigger: /caveman-help, "caveman help", "what cavema |
-| 38 | `caveman-review` |  Ultra-compressed code review comments. Cuts noise from PR feedback while preserving the actionable signal. Each comment is one line: location, problem, fix. Us |
-| 39 | `caveman-stats` |  Show real token usage and estimated savings for the current session. Reads directly from the Claude Code session log — no AI estimation. Triggers on /caveman |
-| 40 | `caveman` |  Ultra-compressed communication mode. Cuts output tokens 65% (measured) by speaking like caveman while keeping full technical accuracy. Supports intensity level |
+| 36 | `caveman` |  Ultra-compressed communication mode. Cuts output tokens 65% (measured) by speaking like caveman while keeping full technical accuracy. Supports intensity level |
+| 37 | `caveman-commit` |  Ultra-compressed commit message generator. Cuts noise from commit messages while preserving intent and reasoning. Conventional Commits format. Subject ≤50 ch |
+| 38 | `caveman-help` |  Quick-reference card for all caveman modes, skills, and commands. One-shot display, not a persistent mode. Trigger: /caveman-help, "caveman help", "what cavema |
+| 39 | `caveman-review` |  Ultra-compressed code review comments. Cuts noise from PR feedback while preserving the actionable signal. Each comment is one line: location, problem, fix. Us |
+| 40 | `caveman-stats` |  Show real token usage and estimated savings for the current session. Reads directly from the Claude Code session log — no AI estimation. Triggers on /caveman |
 | 41 | `chrome-mcp-troubleshooting` | Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use when mcp__claude-in-chrome__* tools fail, return "Browser extension is not connected",  |
 | 42 | `churn-prevention` | "When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when th |
 | 43 | `cloud-sync` | Set up or check claude-mem cloud sync with cmem.ai Pro. Use when the user says "set up cloud sync", "sync my memories", "cmem pro", "cloud backup", "sync status |
@@ -87,11 +87,11 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 80 | `dimensional-analysis` | "Annotates codebases with dimensional analysis comments documenting units, dimensions, and decimal scaling. Use when someone asks to annotate units in a codebas |
 | 81 | `directory-submissions` | When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also u |
 | 82 | `dispatching-parallel-agents` | Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies |
-| 83 | `do-and-judge` | Execute a task with sub-agent implementation and LLM-as-a-judge verification with automatic retry loop |
-| 84 | `do-competitively` | Execute tasks through competitive multi-agent generation, meta-judge evaluation specification, multi-judge evaluation, and evidence-based synthesis |
-| 85 | `do-in-parallel` | Run independent tasks concurrently across multiple files or targets using parallel sub-agents, with per-task model selection and LLM-as-a-judge verification. Us |
-| 86 | `do-in-steps` | Execute one complex task as ordered, dependent steps run sequentially, passing context from each step to the next, with per-step LLM-as-a-judge verification. Us |
-| 87 | `do` | Execute a phased implementation plan using subagents. Use when asked to execute, run, or carry out a plan — especially one created by make-plan. |
+| 83 | `do` | Execute a phased implementation plan using subagents. Use when asked to execute, run, or carry out a plan — especially one created by make-plan. |
+| 84 | `do-and-judge` | Execute a task with sub-agent implementation and LLM-as-a-judge verification with automatic retry loop |
+| 85 | `do-competitively` | Execute tasks through competitive multi-agent generation, meta-judge evaluation specification, multi-judge evaluation, and evidence-based synthesis |
+| 86 | `do-in-parallel` | Run independent tasks concurrently across multiple files or targets using parallel sub-agents, with per-task model selection and LLM-as-a-judge verification. Us |
+| 87 | `do-in-steps` | Execute one complex task as ordered, dependent steps run sequentially, passing context from each step to the next, with per-step LLM-as-a-judge verification. Us |
 | 88 | `dwarf-expert` | Provides expertise for analyzing DWARF debug files and understanding the DWARF debug format/standard (v3-v5). Triggers when understanding DWARF information, int |
 | 89 | `emails` | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions "e |
 | 90 | `enterprise-brand-governor` | Gate every generation through a brand policy file. |
@@ -117,16 +117,16 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 110 | `guidelines-advisor` | Smart contract development advisor based on Trail of Bits' best practices. Analyzes codebase to generate documentation/specifications, review architecture, chec |
 | 111 | `harness-writing` |  Techniques for writing effective fuzzing harnesses across languages. Use when creating new fuzz targets or improving existing harness code. |
 | 112 | `how-it-works` | Explain how claude-mem captures observations, when memory injection kicks in, and where data lives. Use when the user asks "how does claude-mem work?" or "what  |
-| 113 | `image-ad-clone` | Use when the user wants to reverse-engineer an existing image ad into a reusable prompt template. Validates via Arcads — picks gpt-image-2 or Nano Banana at P |
-| 114 | `image` | "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing vis |
+| 113 | `image` | "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing vis |
+| 114 | `image-ad-clone` | Use when the user wants to reverse-engineer an existing image ad into a reusable prompt template. Validates via Arcads — picks gpt-image-2 or Nano Banana at P |
 | 115 | `implement-task` | Implement a task with automated LLM-as-Judge verification per step |
 | 116 | `insecure-defaults` | "Detects fail-open insecure defaults (hardcoded secrets, weak auth, permissive security) that allow apps to run insecurely in production. Use when auditing secu |
-| 117 | `judge-with-debate` | Evaluate solutions through multi-round debate between independent judges until consensus |
-| 118 | `judge` | Launch a meta-judge then a judge sub-agent to evaluate results produced in the current conversation |
+| 117 | `judge` | Launch a meta-judge then a judge sub-agent to evaluate results produced in the current conversation |
+| 118 | `judge-with-debate` | Evaluate solutions through multi-round debate between independent judges until consensus |
 | 119 | `kaizen` | Use when Code implementation and refactoring, architecturing or designing systems, process and workflow improvements, error handling and validation. Provide teh |
 | 120 | `knowledge-agent` | Build and query AI-powered knowledge bases from claude-mem observations. Use when users want to create focused "brains" from their observation history, ask ques |
-| 121 | `launch-sub-agent` | Launch an intelligent sub-agent with automatic model selection based on task complexity, specialized agent matching, Zero-shot CoT reasoning, and mandatory self |
-| 122 | `launch` | "When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature rel |
+| 121 | `launch` | "When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature rel |
+| 122 | `launch-sub-agent` | Launch an intelligent sub-agent with automatic model selection based on task complexity, specialized agent matching, Zero-shot CoT reasoning, and mandatory self |
 | 123 | `lead-magnets` | When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions "lead magnet," "gated conte |
 | 124 | `learn-codebase` | Prime a codebase by reading every source file in full. Use when starting work on a new or unfamiliar project, or when the user asks to "learn the codebase", "re |
 | 125 | `libafl` |  LibAFL is a modular fuzzing library for building custom fuzzers. Use for advanced fuzzing needs, custom mutators, or non-standard fuzzing targets. |
@@ -193,8 +193,8 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 186 | `sales-proposal` | (no frontmatter description) |
 | 187 | `sales-prospect` | (no frontmatter description) |
 | 188 | `sales-qualify` | (no frontmatter description) |
-| 189 | `sales-report-pdf` | (no frontmatter description) |
-| 190 | `sales-report` | (no frontmatter description) |
+| 189 | `sales-report` | (no frontmatter description) |
+| 190 | `sales-report-pdf` | (no frontmatter description) |
 | 191 | `sales-research` | (no frontmatter description) |
 | 192 | `schema` | When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions "schema markup," "structured data, |
 | 193 | `seatbelt-sandboxer` | "Generates minimal macOS Seatbelt sandbox configurations. Use when sandboxing, isolating, or restricting macOS applications with allowlist-based profiles." |
@@ -207,48 +207,49 @@ Generated from the Everything-AI skill collection. Total: 247 skills.
 | 200 | `setup-codemap-cli` | Guide for setup Codemap CLI for intelligent codebase visualization and navigation |
 | 201 | `setup-context7-mcp` | Guide for setup Context7 MCP server to load documentation for specific technologies. |
 | 202 | `setup-serena-mcp` | Guide for setup Serena MCP server for semantic code retrieval and editing capabilities |
-| 203 | `sharp-edges` | "Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes. Use when reviewing API designs, configuration schemas |
-| 204 | `signup` | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "regist |
-| 205 | `site-architecture` | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking. Also use when the user mentions |
-| 206 | `skill-improver` | "Iteratively reviews and fixes Claude Code skill quality issues until they meet standards. Runs automated fix-review cycles using the skill-reviewer agent. Use  |
-| 207 | `smart-explore` | Token-optimized structural code search using tree-sitter AST parsing. Use instead of reading full files when you need to understand code structure, find functio |
-| 208 | `sms` | When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sen |
-| 209 | `social` | "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or  |
-| 210 | `solana-vulnerability-scanner` | Scans Solana programs for 6 critical vulnerabilities including arbitrary CPI, improper PDA validation, missing signer/ownership checks, and sysvar spoofing. Use |
-| 211 | `spec-to-code-compliance` | Verifies code implements exactly what documentation specifies for blockchain audits. Use when comparing code against whitepapers, finding gaps between specs and |
-| 212 | `status` | "Display the current state of the FPF knowledge base" |
-| 213 | `stop-slop` | Remove AI writing patterns from prose. Use when drafting, editing, or reviewing text to eliminate predictable AI tells. |
-| 214 | `subagent-driven-development` | Use when executing implementation plans with independent tasks in the current session or facing 3+ independent issues that can be investigated without shared st |
-| 215 | `substrate-vulnerability-scanner` | Scans Substrate/Polkadot pallets for 7 critical vulnerabilities including arithmetic overflow, panic DoS, incorrect weights, and bad origin checks. Use when aud |
-| 216 | `superpowers-subagent-driven-development` | Use when executing implementation plans with independent tasks in the current session |
-| 217 | `superpowers-test-driven-development` | Use when implementing any feature or bugfix, before writing implementation code |
-| 218 | `supply-chain-risk-auditor` | "Identifies dependencies at heightened risk of exploitation or takeover. Use when assessing supply chain attack surface, evaluating dependency health, or scopin |
-| 219 | `test-coverage` | Use after writing tests to assess coverage quality across structural, mutation, requirements, and API/integration dimensions; organized knowledge for choosing a |
-| 220 | `test-driven-development` | Use when implementing any feature or bugfix, before writing implementation code - write the test first, watch it fail, write minimal code to pass; ensures tests |
-| 221 | `test-prompt` | Use when creating or editing any prompt (commands, hooks, skills, subagent instructions) to verify it produces desired behavior - applies RED-GREEN-REFACTOR cyc |
-| 222 | `test-skill` | Use when creating or editing skills, before deployment, to verify they work under pressure and resist rationalization - applies RED-GREEN-REFACTOR cycle to proc |
-| 223 | `testing-handbook-generator` |  Meta-skill that analyzes the Trail of Bits Testing Handbook (appsec.guide) and generates Claude Code skills for security testing tools and techniques. Use when |
-| 224 | `text-to-visual` | Generate matching visuals from text via Picsart gen-ai. |
-| 225 | `thought-based-reasoning` | Use when tackling complex reasoning tasks requiring step-by-step logic, multi-step arithmetic, commonsense reasoning, symbolic manipulation, or problems where s |
-| 226 | `timeline-report` | Generate a "Journey Into [Project]" narrative report analyzing a project's entire development history from claude-mem's timeline. Use when asked for a timeline  |
-| 227 | `token-integration-analyzer` | Token integration and implementation analyzer based on Trail of Bits' token integration checklist. Analyzes token implementations for ERC20/ERC721 conformity, c |
-| 228 | `ton-vulnerability-scanner` | Scans TON (The Open Network) smart contracts for 3 critical vulnerabilities including integer-as-boolean misuse, fake Jetton contracts, and forward TON without  |
-| 229 | `trailmark-structural` | "Runs full Trailmark structural analysis on Trailmark 0.2.x by building a graph, running `preanalysis()`, and reporting hotspots, taint, blast radius, privilege |
-| 230 | `trailmark-summary` | "Runs a Trailmark summary analysis on a codebase. Returns auto-detected languages, entry point count, and dependency list. Use when vivisect or galvanize needs  |
-| 231 | `trailmark` | "Builds and queries multi-language source code graphs for security analysis. Includes pre-analysis passes for blast radius, taint propagation, privilege boundar |
-| 232 | `tree-of-thoughts` | Execute tasks through systematic exploration, pruning, and expansion using Tree of Thoughts methodology with meta-judge evaluation specifications and multi-agen |
-| 233 | `update-docs` | Update and maintain project documentation for local code changes using multi-agent workflow with tech-writer agents. Covers docs/, READMEs, JSDoc, and API docum |
-| 234 | `using-git-worktrees` | Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n |
-| 235 | `using-superpowers` | Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions |
-| 236 | `variant-analysis` | Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when hunting bug variants, building CodeQL/Semgrep queries, analyzing s |
-| 237 | `vector-forge` | "Mutation-driven test vector generation. Finds implementations of a cryptographic algorithm or protocol, runs mutation testing to identify escaped mutants, then |
-| 238 | `verification-before-completion` | Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be |
-| 239 | `video` | "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production, |
-| 240 | `weekly-digests` | Generate a serial week-by-week narrative digest of a project's full claude-mem timeline. Splits the timeline into per-ISO-week files, then runs one consecutive  |
-| 241 | `what-the` | "What the? Use when the user wants a plain-English breakdown of something technical — the who, what, where, why, and when." |
-| 242 | `why` | Iterative Five Whys root cause analysis drilling from symptoms to fundamentals |
-| 243 | `wowerpoint` | Turn one document into a kawaii NotebookLM slide-deck PDF. Use for "wowerpoint this", "make a deck about <file>", "turn this report into slides", or any request |
-| 244 | `write-concisely` | Apply writing rules to any documentation that humans will read. Makes your writing clearer, stronger, and more professional. |
-| 245 | `write-tests` | Add missing test coverage for your local code changes by generating new test files (covers uncommitted and untracked changes, or the latest commit if everything |
-| 246 | `writing-plans` | Use when you have a spec or requirements for a multi-step task, before touching code |
-| 247 | `wycheproof` |  Wycheproof provides test vectors for validating cryptographic implementations. Use when testing crypto code for known attacks and edge cases. |
+| 203 | `setup-tencentdb-agent-memory` | Guide for setting up TencentDB Agent Memory (layered long-term + symbolic short-term memory system) via Docker and routing Claude Code through its local proxy |
+| 204 | `sharp-edges` | "Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes. Use when reviewing API designs, configuration schemas |
+| 205 | `signup` | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "regist |
+| 206 | `site-architecture` | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking. Also use when the user mentions |
+| 207 | `skill-improver` | "Iteratively reviews and fixes Claude Code skill quality issues until they meet standards. Runs automated fix-review cycles using the skill-reviewer agent. Use  |
+| 208 | `smart-explore` | Token-optimized structural code search using tree-sitter AST parsing. Use instead of reading full files when you need to understand code structure, find functio |
+| 209 | `sms` | When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sen |
+| 210 | `social` | "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or  |
+| 211 | `solana-vulnerability-scanner` | Scans Solana programs for 6 critical vulnerabilities including arbitrary CPI, improper PDA validation, missing signer/ownership checks, and sysvar spoofing. Use |
+| 212 | `spec-to-code-compliance` | Verifies code implements exactly what documentation specifies for blockchain audits. Use when comparing code against whitepapers, finding gaps between specs and |
+| 213 | `status` | "Display the current state of the FPF knowledge base" |
+| 214 | `stop-slop` | Remove AI writing patterns from prose. Use when drafting, editing, or reviewing text to eliminate predictable AI tells. |
+| 215 | `subagent-driven-development` | Use when executing implementation plans with independent tasks in the current session or facing 3+ independent issues that can be investigated without shared st |
+| 216 | `substrate-vulnerability-scanner` | Scans Substrate/Polkadot pallets for 7 critical vulnerabilities including arithmetic overflow, panic DoS, incorrect weights, and bad origin checks. Use when aud |
+| 217 | `superpowers-subagent-driven-development` | Use when executing implementation plans with independent tasks in the current session |
+| 218 | `superpowers-test-driven-development` | Use when implementing any feature or bugfix, before writing implementation code |
+| 219 | `supply-chain-risk-auditor` | "Identifies dependencies at heightened risk of exploitation or takeover. Use when assessing supply chain attack surface, evaluating dependency health, or scopin |
+| 220 | `test-coverage` | Use after writing tests to assess coverage quality across structural, mutation, requirements, and API/integration dimensions; organized knowledge for choosing a |
+| 221 | `test-driven-development` | Use when implementing any feature or bugfix, before writing implementation code - write the test first, watch it fail, write minimal code to pass; ensures tests |
+| 222 | `test-prompt` | Use when creating or editing any prompt (commands, hooks, skills, subagent instructions) to verify it produces desired behavior - applies RED-GREEN-REFACTOR cyc |
+| 223 | `test-skill` | Use when creating or editing skills, before deployment, to verify they work under pressure and resist rationalization - applies RED-GREEN-REFACTOR cycle to proc |
+| 224 | `testing-handbook-generator` |  Meta-skill that analyzes the Trail of Bits Testing Handbook (appsec.guide) and generates Claude Code skills for security testing tools and techniques. Use when |
+| 225 | `text-to-visual` | Generate matching visuals from text via Picsart gen-ai. |
+| 226 | `thought-based-reasoning` | Use when tackling complex reasoning tasks requiring step-by-step logic, multi-step arithmetic, commonsense reasoning, symbolic manipulation, or problems where s |
+| 227 | `timeline-report` | Generate a "Journey Into [Project]" narrative report analyzing a project's entire development history from claude-mem's timeline. Use when asked for a timeline  |
+| 228 | `token-integration-analyzer` | Token integration and implementation analyzer based on Trail of Bits' token integration checklist. Analyzes token implementations for ERC20/ERC721 conformity, c |
+| 229 | `ton-vulnerability-scanner` | Scans TON (The Open Network) smart contracts for 3 critical vulnerabilities including integer-as-boolean misuse, fake Jetton contracts, and forward TON without  |
+| 230 | `trailmark` | "Builds and queries multi-language source code graphs for security analysis. Includes pre-analysis passes for blast radius, taint propagation, privilege boundar |
+| 231 | `trailmark-structural` | "Runs full Trailmark structural analysis on Trailmark 0.2.x by building a graph, running `preanalysis()`, and reporting hotspots, taint, blast radius, privilege |
+| 232 | `trailmark-summary` | "Runs a Trailmark summary analysis on a codebase. Returns auto-detected languages, entry point count, and dependency list. Use when vivisect or galvanize needs  |
+| 233 | `tree-of-thoughts` | Execute tasks through systematic exploration, pruning, and expansion using Tree of Thoughts methodology with meta-judge evaluation specifications and multi-agen |
+| 234 | `update-docs` | Update and maintain project documentation for local code changes using multi-agent workflow with tech-writer agents. Covers docs/, READMEs, JSDoc, and API docum |
+| 235 | `using-git-worktrees` | Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n |
+| 236 | `using-superpowers` | Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions |
+| 237 | `variant-analysis` | Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when hunting bug variants, building CodeQL/Semgrep queries, analyzing s |
+| 238 | `vector-forge` | "Mutation-driven test vector generation. Finds implementations of a cryptographic algorithm or protocol, runs mutation testing to identify escaped mutants, then |
+| 239 | `verification-before-completion` | Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be |
+| 240 | `video` | "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production, |
+| 241 | `weekly-digests` | Generate a serial week-by-week narrative digest of a project's full claude-mem timeline. Splits the timeline into per-ISO-week files, then runs one consecutive  |
+| 242 | `what-the` | "What the? Use when the user wants a plain-English breakdown of something technical — the who, what, where, why, and when." |
+| 243 | `why` | Iterative Five Whys root cause analysis drilling from symptoms to fundamentals |
+| 244 | `wowerpoint` | Turn one document into a kawaii NotebookLM slide-deck PDF. Use for "wowerpoint this", "make a deck about <file>", "turn this report into slides", or any request |
+| 245 | `write-concisely` | Apply writing rules to any documentation that humans will read. Makes your writing clearer, stronger, and more professional. |
+| 246 | `write-tests` | Add missing test coverage for your local code changes by generating new test files (covers uncommitted and untracked changes, or the latest commit if everything |
+| 247 | `writing-plans` | Use when you have a spec or requirements for a multi-step task, before touching code |
+| 248 | `wycheproof` |  Wycheproof provides test vectors for validating cryptographic implementations. Use when testing crypto code for known attacks and edge cases. |
