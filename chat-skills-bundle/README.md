@@ -4,7 +4,7 @@ A ready-to-upload bundle of **247 chat-friendly skills** for the **Claude.ai app
 
 These are the skills from the `Everything-AI` collection that run as pure guidance/knowledge — no
 local machine, OS tools, external CLIs, or MCP servers required — so they work inside Claude.ai's
-sandbox. (The 25 tool/machine-only skills are listed in `EXCLUDED.md` and belong in Claude Code.)
+sandbox. (The 28 tool/machine-only skills are listed in `EXCLUDED.md` and belong in Claude Code.)
 
 ## What's inside
 
