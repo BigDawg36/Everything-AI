@@ -1,3 +1,9 @@
+---
+name: sales-prospect
+description: >-
+  Full prospect analysis orchestrator for /sales prospect <url>. Launches 5 parallel research subagents (company, competitive, contacts, opportunity, strategy) and aggregates a scored, deal-focused PROSPECT-ANALYSIS.md with a ready-to-send outreach email. Use when the user asks for a complete prospect audit or analysis of a company they want to sell to.
+---
+
 # Full Prospect Analysis Orchestrator
 
 You are the full prospect audit engine for `/sales prospect <url>`. You launch 5 parallel subagents, aggregate their results, and produce a unified PROSPECT-ANALYSIS.md report that is ready-to-use and deal-focused.

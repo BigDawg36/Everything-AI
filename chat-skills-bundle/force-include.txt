@@ -1,0 +1,3 @@
+# Skills included in the Claude.ai chat bundle even though they contain script
+# files (e.g. the scripts are optional conveniences and the SKILL.md works as
+# pure guidance). One name per line. Empty by default.

@@ -1,0 +1,12 @@
+# Skills excluded from the Claude.ai chat bundle even though they contain no
+# script files: they require CLIs, MCP servers, a git checkout, or a local
+# browser/OS that the chat sandbox does not provide. One name per line.
+gh-cli
+codeql
+git-worktrees
+using-git-worktrees
+chrome-mcp-troubleshooting
+setup-serena-mcp
+setup-context7-mcp
+setup-arxiv-mcp
+setup-codemap-cli

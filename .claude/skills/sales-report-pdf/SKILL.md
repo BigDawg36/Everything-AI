@@ -1,3 +1,9 @@
+---
+name: sales-report-pdf
+description: >-
+  Professional PDF sales report generator for /sales report-pdf. Renders SALES-REPORT.md and prospect files into SALES-REPORT-{date}.pdf via scripts/generate_pdf_report.py (requires Python 3 and reportlab). Use when the user wants a polished, shareable PDF version of their sales pipeline report.
+---
+
 # Professional Sales Report PDF Generator
 
 ## Metadata
