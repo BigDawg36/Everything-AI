@@ -1,3 +1,9 @@
+---
+name: sales-icp
+description: >-
+  Ideal Customer Profile builder for /sales icp <description>. Turns a description of the user's business, product, or service into IDEAL-CUSTOMER-PROFILE.md, which calibrates scoring across the whole sales suite. Use when the user wants to define their ideal customer or target market.
+---
+
 # Ideal Customer Profile Builder
 
 ## Metadata

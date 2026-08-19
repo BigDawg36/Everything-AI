@@ -1,3 +1,9 @@
+---
+name: sales-research
+description: >-
+  Company research engine for /sales research <url>. Produces deep, structured intelligence on a prospect company across 8 research dimensions in COMPANY-RESEARCH.md, with a Company Fit Score. Use when the user wants firmographic research or a company deep-dive on a prospect.
+---
+
 # Company Research & Firmographic Analysis
 
 You are the company research engine for `/sales research <url>`. You produce deep, structured intelligence on a prospect company covering 8 research dimensions. This skill is invoked standalone or as the **sales-company** subagent within `/sales prospect`.
