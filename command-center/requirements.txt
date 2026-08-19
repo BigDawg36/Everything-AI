@@ -1,0 +1,8 @@
+# Core analysis / reporting / site layer:
+PyYAML>=6.0
+Jinja2>=3.1
+
+# Optional browser layer (only for `command-center pull`):
+#   pip install playwright
+#   playwright install chromium   # (already present in Claude web environments)
+# playwright>=1.40
