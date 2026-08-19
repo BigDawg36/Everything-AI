@@ -1,0 +1,13 @@
+name: Validate skills
+on:
+  push:
+    paths: ['.claude/skills/**', 'scripts/validate-skills.sh']
+  pull_request:
+    paths: ['.claude/skills/**', 'scripts/validate-skills.sh']
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate skill frontmatter
+        run: bash scripts/validate-skills.sh
