@@ -1,6 +1,6 @@
 ---
 name: superpowers-subagent-driven-development
-description: Use when executing implementation plans with independent tasks in the current session
+description: Use ONLY when the user explicitly asks for the superpowers subagent-driven workflow (e.g. "superpowers SDD", /superpowers-subagent-driven-development). For general plan execution with subagents, use the subagent-driven-development skill instead.
 ---
 
 # Subagent-Driven Development

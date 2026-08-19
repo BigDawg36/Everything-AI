@@ -1,0 +1,6 @@
+# Python bytecode caches, created whenever a skill's scripts are run in-place
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
