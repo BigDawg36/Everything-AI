@@ -1,3 +1,9 @@
+---
+name: sales-report
+description: >-
+  Sales pipeline report generator for /sales report. Scans the current directory for prospect analysis files produced by the sales suite and aggregates them into SALES-REPORT.md. Use when the user wants a pipeline overview or summary report of analyzed prospects.
+---
+
 # Sales Pipeline Report Generator
 
 ## Metadata
