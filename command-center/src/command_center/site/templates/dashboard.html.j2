@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<style>
+  :root {
+    --bg: #0b1020; --panel: #151b30; --panel2: #1d2540; --ink: #e8ecf7;
+    --muted: #93a0c0; --line: #29314f; --accent: #4f8cff; --good: #35c28b;
+    --warn: #f5a623; --bad: #ef5f6b; --a: #35c28b; --b: #4f8cff; --c: #f5a623; --d: #6b7699;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f4f6fb; --panel:#fff; --panel2:#f0f3fa; --ink:#141a2e; --muted:#59637d; --line:#e2e7f2; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+         background:var(--bg); color:var(--ink); }
+  header { padding:28px 32px 8px; }
+  h1 { margin:0; font-size:22px; letter-spacing:.2px; }
+  .sub { color:var(--muted); font-size:13px; margin-top:4px; }
+  main { padding:16px 32px 48px; display:grid; gap:20px; max-width:1200px; margin:0 auto; }
+  .grid { display:grid; gap:16px; }
+  .kpis { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .kpi .label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.6px; }
+  .kpi .value { font-size:28px; font-weight:650; margin-top:6px; }
+  section h2 { font-size:15px; margin:4px 0 12px; color:var(--muted); font-weight:600;
+               text-transform:uppercase; letter-spacing:.6px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th,td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.4px; }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .bar { height:8px; background:var(--panel2); border-radius:6px; overflow:hidden; min-width:80px; }
+  .bar > span { display:block; height:100%; background:var(--accent); }
+  .pill { display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:600; }
+  .tier-A { background:rgba(53,194,139,.16); color:var(--a); }
+  .tier-B { background:rgba(79,140,255,.16); color:var(--b); }
+  .tier-C { background:rgba(245,166,35,.16); color:var(--c); }
+  .tier-D { background:rgba(107,118,153,.18); color:var(--d); }
+  .up { color:var(--good); } .down { color:var(--bad); } .flat { color:var(--muted); }
+  .spark-grid { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+  .spark .rep { font-weight:600; font-size:14px; }
+  .spark .meta { color:var(--muted); font-size:12px; display:flex; justify-content:space-between; margin-top:6px; }
+  .tiers { display:flex; gap:12px; flex-wrap:wrap; }
+  .tierbox { flex:1; min-width:120px; text-align:center; padding:14px; border-radius:12px; background:var(--panel2); }
+  .tierbox .n { font-size:26px; font-weight:700; }
+  iframe { width:100%; height:600px; border:0; border-radius:12px; background:var(--panel2); }
+  footer { color:var(--muted); font-size:12px; text-align:center; padding:0 0 32px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>{{ title }}</h1>
+  <div class="sub">{% if generated_at %}Generated {{ generated_at }} · {% endif %}Data refreshes when you re-run the command center.</div>
+</header>
+<main>
+
+  <section>
+    <div class="grid kpis">
+      {% for label, value in kpis.items() %}
+      <div class="card kpi"><div class="label">{{ label }}</div><div class="value">{{ value }}</div></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if powerbi_embed_url %}
+  <section class="card">
+    <h2>Power BI report</h2>
+    <iframe src="{{ powerbi_embed_url }}" allowfullscreen title="Power BI report"></iframe>
+  </section>
+  {% endif %}
+
+  <section class="card">
+    <h2>Rep leaderboard — quota attainment</h2>
+    <table>
+      <thead><tr><th>Rep</th><th>Territory</th><th class="num">Actual (YTD)</th><th class="num">Quota</th><th class="num">Attainment</th><th style="width:160px">&nbsp;</th></tr></thead>
+      <tbody>
+      {% for r in leaderboard %}
+        <tr>
+          <td>{{ r.rep }}</td>
+          <td>{{ r.territory or '—' }}</td>
+          <td class="num">${{ '{:,.0f}'.format(r.actual or 0) }}</td>
+          <td class="num">${{ '{:,.0f}'.format(r.quota or 0) }}</td>
+          <td class="num">{% if r.attainment_pct is not none %}{{ '{:.0f}'.format(r.attainment_pct) }}%{% else %}—{% endif %}</td>
+          <td><div class="bar"><span style="width:{{ [ (r.attainment_pct or 0), 100] | min }}%; background: {% if (r.attainment_pct or 0) >= 100 %}var(--good){% elif (r.attainment_pct or 0) >= 75 %}var(--accent){% else %}var(--warn){% endif %};"></span></div></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  {% if sparklines %}
+  <section>
+    <h2 style="padding-left:4px">Revenue trend by rep</h2>
+    <div class="grid spark-grid">
+      {% for s in sparklines %}
+      <div class="card spark">
+        <div class="rep">{{ s.rep }}</div>
+        <svg width="100%" height="40" viewBox="0 0 160 40" preserveAspectRatio="none" style="margin-top:8px">
+          <polyline fill="none" stroke="{% if s.direction=='down' %}var(--bad){% elif s.direction=='up' %}var(--good){% else %}var(--muted){% endif %}" stroke-width="2" points="{{ s.points }}"/>
+        </svg>
+        <div class="meta">
+          <span>${{ '{:,.0f}'.format(s.latest) }}</span>
+          <span class="{{ s.direction }}">{% if s.mom is not none %}{{ '{:+.1f}'.format(s.mom) }}% MoM{% else %}—{% endif %}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="card">
+    <h2>Target pipeline by tier</h2>
+    <div class="tiers">
+      {% for tier in ['A','B','C','D'] %}
+      <div class="tierbox">
+        <div class="n tier-{{ tier }}" style="background:none">{{ tier_counts[tier] }}</div>
+        <div class="pill tier-{{ tier }}">Tier {{ tier }}</div>
+        <div class="sub" style="margin-top:6px">${{ '{:,.0f}'.format(tier_value[tier]) }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Top targets</h2>
+    <table>
+      <thead><tr><th>#</th><th>Target</th><th>Rep</th><th>Tier</th><th class="num">Score</th><th class="num">Est. value</th><th>Status</th></tr></thead>
+      <tbody>
+      {% for t in top_targets %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ t.name }}{% if t.facility %}<div class="sub">{{ t.facility }}</div>{% endif %}</td>
+          <td>{{ t.rep or '—' }}</td>
+          <td><span class="pill tier-{{ t.tier }}">{{ t.tier }}</span></td>
+          <td class="num">{{ t.score }}</td>
+          <td class="num">${{ '{:,.0f}'.format(t.est_annual_value) }}</td>
+          <td>{{ t.status }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <footer>Sales Command Center · built from AcuityMD targets + Power BI metrics · the agent never stores your logins.</footer>
+</main>
+</body>
+</html>

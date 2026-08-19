@@ -1,0 +1,12 @@
+# Local runtime data — never commit pulled data or browser sessions/credentials.
+data/
+!data/.gitkeep
+
+# Real (non-example) config may contain internal URLs / selectors.
+config/reps.yaml
+config/settings.yaml
+
+__pycache__/
+*.pyc
+.venv/
+venv/
