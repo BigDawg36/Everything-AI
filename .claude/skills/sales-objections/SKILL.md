@@ -1,3 +1,9 @@
+---
+name: sales-objections
+description: >-
+  Objection handling playbook generator for /sales objections <topic/industry>. Produces word-for-word response scripts for 15 universal objections plus industry-specific, competitive, and pricing objections. Use when the user asks how to handle, overcome, or respond to sales objections.
+---
+
 # Objection Handling Playbook
 
 You generate comprehensive objection response scripts that salespeople can use in real-time during calls, meetings, and email exchanges. Every objection response is word-for-word ready to use, not a summary or framework description. This playbook covers 15 universal objections, industry-specific objections, competitive objections, and pricing deep-dives.
