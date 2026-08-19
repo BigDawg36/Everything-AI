@@ -1,3 +1,10 @@
+> **Vendored snapshot note (Everything-AI):** this file is the upstream
+> `CLAUDE.md` of [eugeniughelbur/obsidian-second-brain](https://github.com/eugeniughelbur/obsidian-second-brain),
+> renamed to `UPSTREAM-CLAUDE.md` so agents working in the Everything-AI repo don't
+> mistake it for repo-level instructions. It applies only when developing this skill's
+> source. The `.github/workflows/` and `install.sh` here are NOT wired to Everything-AI —
+> `install.sh`/`update.sh` symlink into your `~/.claude/`; don't run them casually.
+
 # CLAUDE.md
 
 Operating instructions for Claude Code when working inside this repo.
