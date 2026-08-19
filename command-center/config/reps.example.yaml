@@ -1,0 +1,17 @@
+# Rep roster. Copy to reps.yaml and edit for your team.
+reps:
+  - name: Jordan Lee
+    territory: OC-North
+    email: jordan.lee@example.com
+    quota: 1800000
+    manager: Mike Mizuha
+  - name: Priya Shah
+    territory: OC-South
+    email: priya.shah@example.com
+    quota: 1650000
+    manager: Mike Mizuha
+  - name: Marcus Bell
+    territory: LA-East
+    email: marcus.bell@example.com
+    quota: 2000000
+    manager: Mike Mizuha
