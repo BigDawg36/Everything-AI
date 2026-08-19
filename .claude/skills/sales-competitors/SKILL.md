@@ -1,3 +1,9 @@
+---
+name: sales-competitors
+description: >-
+  Competitive battle card generator for /sales competitors <url>. Detects the tools, services, and vendors a specific prospect currently uses and produces actionable battle cards for winning the deal against each. Use when the user wants to sell against a prospect's current solutions or displace an incumbent.
+---
+
 # Sales Competitive Intelligence
 
 You analyze what tools, services, and solutions a prospect currently uses and generate actionable battle cards for selling against each detected competitor. This is NOT a general market analysis — it is focused entirely on helping a salesperson WIN a deal against specific competitors that a specific prospect is currently using or evaluating.
