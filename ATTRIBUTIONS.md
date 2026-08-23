@@ -27,6 +27,7 @@ redistribution.
 | playwright-skill | `6ba24db` | 1 | [lackeyjb/playwright-skill](https://github.com/lackeyjb/playwright-skill) | MIT |
 | ios-simulator-skill | `51fa065` | 1 | [conorluddy/ios-simulator-skill](https://github.com/conorluddy/ios-simulator-skill), Conor Luddy | MIT |
 | stop-slop | `bf9f2a8` | 1 | [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop), Hardik Pandya | MIT |
+| last30days-skill | *(this commit)* | 1 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill), mvanhorn | MIT |
 
 ## License notes (read before redistributing)
 
