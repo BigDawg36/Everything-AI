@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
     "21st": {
       "type": "http",
       "url": "https://21st.dev/api/mcp",
@@ -10,6 +14,25 @@
     "claude-video-vision": {
       "command": "npx",
       "args": ["-y", "claude-video-vision@latest"]
+    },
+    "firecrawl": {
+      "type": "http",
+      "url": "https://mcp.firecrawl.dev/v2/mcp",
+      "headers": {
+        "Authorization": "Bearer ${FIRECRAWL_API_KEY}"
+      }
+    },
+    "perplexity": {
+      "type": "http",
+      "url": "https://api.perplexity.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${PERPLEXITY_API_KEY}"
+      }
+    },
+    "composio": {
+      "type": "http",
+      "url": "${COMPOSIO_MCP_URL}",
+      "headers": {}
     }
   }
 }
