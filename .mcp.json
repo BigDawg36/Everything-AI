@@ -30,9 +30,8 @@
       }
     },
     "composio": {
-      "type": "http",
-      "url": "${COMPOSIO_MCP_URL}",
-      "headers": {}
+      "command": "composio",
+      "args": ["mcp"]
     }
   }
 }
