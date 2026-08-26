@@ -29,6 +29,7 @@ redistribution.
 | stop-slop | `bf9f2a8` | 1 | [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop), Hardik Pandya | MIT |
 | last30days-skill | *(this commit)* | 1 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill), mvanhorn | MIT |
 | claude-video-vision | *(this commit)* | 1 (`video-perception`) + commands + agent + MCP server | [jordanrendric/claude-video-vision](https://github.com/jordanrendric/claude-video-vision), Jordan Vasconcelos | MIT |
+| google-gemini skills | *(this commit)* | 4 (`gemini-api-dev`, `gemini-interactions-api`, `gemini-live-api-dev`, `gemini-omni-flash-api`) | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), Google | Apache-2.0 |
 
 ## License notes (read before redistributing)
 
