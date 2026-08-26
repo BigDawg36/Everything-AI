@@ -5,9 +5,16 @@
         "source": "github",
         "repo": "bradautomates/claude-video"
       }
+    },
+    "claudex-loop": {
+      "source": {
+        "source": "github",
+        "repo": "chaseai-yt/claudex-loop"
+      }
     }
   },
   "enabledPlugins": {
-    "watch@claude-video": true
+    "watch@claude-video": true,
+    "claudex-loop@claudex-loop": true
   }
 }
