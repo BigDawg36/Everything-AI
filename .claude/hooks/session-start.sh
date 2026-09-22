@@ -9,13 +9,13 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 if ! command -v uv >/dev/null 2>&1; then
-  # Prefer installing via PyPI (pip resolves against the package index over
-  # HTTPS) rather than piping the vendor's installer script into a shell.
-  if command -v python3 >/dev/null 2>&1; then
-    python3 -m pip install --user --quiet uv
-  else
-    curl -LsSf https://astral.sh/uv/install.sh | sh
+  # Install via PyPI (pip resolves against the package index over HTTPS)
+  # rather than piping a downloaded installer script into a shell.
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "session-start hook: python3/pip not found, cannot install uv" >&2
+    exit 1
   fi
+  python3 -m pip install --user --quiet uv
 fi
 
 # Pinned to the immutable commit for the v2.11.2 release tag (not the tag
