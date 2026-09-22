@@ -12,6 +12,7 @@ if ! command -v uv >/dev/null 2>&1; then
   curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
-uv tool install --quiet git+https://github.com/NVIDIA/skillspector.git
+# Pinned to a release tag for reproducibility; bump deliberately when upgrading.
+uv tool install --quiet "git+https://github.com/NVIDIA/skillspector.git@v2.11.2"
 
 echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$CLAUDE_ENV_FILE"
