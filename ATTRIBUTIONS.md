@@ -31,6 +31,7 @@ redistribution.
 | claude-video-vision | *(this commit)* | 1 (`video-perception`) + commands + agent + MCP server | [jordanrendric/claude-video-vision](https://github.com/jordanrendric/claude-video-vision), Jordan Vasconcelos | MIT |
 | google-gemini skills | *(this commit)* | 4 (`gemini-api-dev`, `gemini-interactions-api`, `gemini-live-api-dev`, `gemini-omni-flash-api`) | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), Google | Apache-2.0 |
 | ECC (Everything Claude Code) | *(this commit)* | 38 (e.g. `api-design`, `brand-discovery`, `eval-harness`, `frontend-slides`, `mle-workflow`, `unified-memory`) | [affaan-m/ECC](https://github.com/affaan-m/ECC), Affaan M | MIT |
+| andrej-karpathy-skills | *(this commit)* | 1 (`karpathy-guidelines`) | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) (upstream `2c60614`), forrestchang | MIT |
 
 ## License notes (read before redistributing)
 
