@@ -45,7 +45,7 @@ for d in "$SK"/*/; do
   fi
 done
 
-total="$(find "$SK" -mindepth 1 -maxdepth 1 -type d | wc -l)"
+total="$(find -L "$SK" -mindepth 1 -maxdepth 1 -type d | wc -l)"
 if [ "$fail" -eq 0 ]; then
   echo "OK: $total skills validated"
 else
