@@ -4,7 +4,7 @@ Operational instructions for Claude Code sessions in this repo. Architecture and
 
 ## What this repo is
 
-A collection of **274 Claude Code skills** under `.claude/skills/` (Markdown, one directory per skill), 5 sales subagents under `.claude/agents/`, and a packaging pipeline in `chat-skills-bundle/` that zips the chat-compatible skills (currently 238) for upload to Claude.ai chat. **There is no application code.** The skills are the product.
+A collection of **339 Claude Code skills** under `.claude/skills/` (Markdown, one directory per skill), 5 sales subagents under `.claude/agents/`, and a packaging pipeline in `chat-skills-bundle/` that zips the chat-compatible skills (currently 295) for upload to Claude.ai chat. **There is no application code.** The skills are the product.
 
 ## Commands
 
@@ -19,7 +19,7 @@ bash chat-skills-bundle/build-bundle.sh
 # Prints: "chat-friendly: N | excluded: M (scripts: X, forced: Y)" — verify N+M == skill count
 
 # Count skills / sanity-check the tree
-ls .claude/skills | grep -v -E '^(LICENSE|README.md)$' | wc -l   # 274 as of 2026-07
+ls .claude/skills | grep -v -E '^(LICENSE|README.md)$' | wc -l   # 339 as of 2026-09
 ```
 
 Run **both** commands after any change that adds/removes a skill, touches frontmatter, or adds/removes a script file inside a skill — script presence flips a skill's chat/machine classification.
@@ -37,7 +37,7 @@ Run **both** commands after any change that adds/removes a skill, touches frontm
   ```
   Optional fields seen in the wild: `allowed-tools:` (Trail of Bits skills), `metadata: {version: x.y.z}` (marketing skills), `argument-hint:` (slash-command-style skills). For NEW skills, use the minimal `name` + `description` form; `description` is the routing logic — spend your effort there. `scripts/validate-skills.sh` enforces the invariants.
 - **Support files** go in subdirs by role: `references/` (docs the skill reads), `resources/` (report templates/criteria), `templates/` (output templates), `scripts/` (runnables), `evals/evals.json` (test prompts + assertions), `workflows/` (multi-phase procedures).
-- **Skills are vendored snapshots** from ~10 upstream collections (map: `ATTRIBUTIONS.md`, table in `PROJECT.md`). Preserve each family's internal style when editing; don't "normalize" vendored skills. When importing a new collection, record its upstream URL + license in `ATTRIBUTIONS.md` at import time.
+- **Skills are vendored snapshots** from ~20 upstream collections (map: `ATTRIBUTIONS.md`, table in `PROJECT.md`). Preserve each family's internal style when editing; don't "normalize" vendored skills. When importing a new collection, record its upstream URL + license in `ATTRIBUTIONS.md` at import time.
 - Commit messages follow the existing history style: imperative, plain, e.g. `Add 18 claude-mem skills to .claude/skills`, `Refresh chat-skills-bundle: 247 skills`.
 
 ## Gotchas

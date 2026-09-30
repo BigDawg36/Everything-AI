@@ -4,12 +4,12 @@
 
 ## What this is
 
-**Everything-AI is not an application. It is a curated mega-collection of 274 Claude Code skills** — prompt/instruction packages in Markdown — aggregated from roughly ten public open-source skill collections into one repo, plus a small build pipeline that repackages the chat-compatible subset (currently 238 skills) for upload to the Claude.ai web/desktop app.
+**Everything-AI is not an application. It is a curated mega-collection of 339 Claude Code skills** — prompt/instruction packages in Markdown — aggregated from roughly twenty public open-source skill collections into one repo, plus a small build pipeline that repackages the chat-compatible subset (currently 295 skills) for upload to the Claude.ai web/desktop app.
 
 It's for one user (the repo owner) who wants every useful Claude skill available in two places:
 
 1. **Claude Code** — the entire `.claude/skills/` tree is auto-discovered when Claude Code runs anywhere in this repo (or when the tree is copied/symlinked into `~/.claude/`).
-2. **Claude.ai chat** — via `chat-skills-bundle/`, which zips the skills that need no local machine (238 currently) so they can be uploaded under *Settings → Capabilities → Skills*.
+2. **Claude.ai chat** — via `chat-skills-bundle/`, which zips the skills that need no local machine (295 currently) so they can be uploaded under *Settings → Capabilities → Skills*.
 
 There is no server, no database, no package.json, no deployable binary. The "source code" is Markdown; the only build artifact is a zip file.
 
@@ -32,7 +32,7 @@ The session/workspace also contains **`-Keeping-Fable-5`**, a placeholder repo w
 ```
 Everything-AI/
 ├── .claude/
-│   ├── skills/                  # 274 skill directories + LICENSE + README.md
+│   ├── skills/                  # 339 skill directories + LICENSE + README.md
 │   │   └── <skill-name>/
 │   │       ├── SKILL.md         # REQUIRED: frontmatter + instructions (the skill itself)
 │   │       ├── references/      # optional: deep-dive docs the skill tells Claude to read
@@ -46,8 +46,8 @@ Everything-AI/
 └── chat-skills-bundle/
     ├── build-bundle.sh          # THE build script — regenerates dist/ + both manifests
     ├── README.md                # usage instructions for the bundle
-    ├── MANIFEST.md              # GENERATED list of the chat skills (238)
-    ├── EXCLUDED.md              # GENERATED list of the machine-only skills (36)
+    ├── MANIFEST.md              # GENERATED list of the chat skills (295)
+    ├── EXCLUDED.md              # GENERATED list of the machine-only skills (44)
     ├── force-include.txt        # classifier overrides (script-bearing but chat-usable)
     ├── force-exclude.txt        # classifier overrides (markdown-only but machine-bound)
     └── dist/everything-ai-chat-skills.zip   # committed build output (~6 MB)
@@ -86,7 +86,7 @@ There are two consumption paths and one build path:
         auto-discovers by     │              │   classifies each skill:
         frontmatter           │              │   script file present? → machine-only (27)
         `description` match   │              │   in force-exclude.txt? → machine-only (9)
-                              ▼              │   otherwise → chat-friendly (238)
+                              ▼              │   otherwise → chat-friendly (295)
                    ┌───────────────┐         ▼
                    │ Claude Code   │   ┌──────────────────────────────────┐
                    │ (this repo or │   │ dist/everything-ai-chat-skills.zip│
@@ -110,7 +110,7 @@ Key mechanics:
 ## Key design decisions (inferred)
 
 1. **Vendor, don't reference.** Every collection is copied in wholesale rather than added as a submodule or fetched at build time. Consequence: total self-containment and snapshot stability, at the cost of duplication (74 identical Trail of Bits SVGs), staleness, and licensing bookkeeping.
-2. **One flat namespace.** All 274 skills live directly under `.claude/skills/` with no per-source subdirectories, because Claude Code only discovers one level deep. Consequence: source families are only recoverable from git history, and near-duplicate names coexist (`brainstorm` vs `brainstorming`, `test-driven-development` vs `superpowers-test-driven-development`).
+2. **One flat namespace.** All 339 skills live directly under `.claude/skills/` with no per-source subdirectories, because Claude Code only discovers one level deep. Consequence: source families are only recoverable from git history, and near-duplicate names coexist (`brainstorm` vs `brainstorming`, `test-driven-development` vs `superpowers-test-driven-development`).
 3. **Classification by file extension, corrected by override lists.** The chat bundle's "can this run in the Claude.ai sandbox?" decision is mechanical (script files present → excluded), chosen for simplicity and reproducibility; `force-exclude.txt`/`force-include.txt` patch the cases the heuristic gets wrong. The commit message "fix flaky classifier" (e1c9491) shows the boundary needed iteration even before the overrides.
 4. **Committed build artifact.** `dist/everything-ai-chat-skills.zip` is checked into git so the bundle is downloadable without running anything. Consequence: ~6 MB of binary churn per refresh.
 5. **Upstream fidelity over consistency.** Skills were not normalized on import — frontmatter styles, directory conventions, and even the presence of frontmatter vary by family. This makes re-syncing from upstream easier but means there is no single "house style" (see Conventions in `CLAUDE.md`).
@@ -141,6 +141,6 @@ Key mechanics:
 3. **The 14 sales-suite SKILL.md files historically had no YAML frontmatter** (fixed 2026-07-16; `validate-skills.sh` now enforces it). Their bodies still assume `/sales <subcommand>` invocation wired to the orchestrator.
 4. **`obsidian-second-brain` is a complete vendored source repo**, including its own `.github/workflows/`, `install.sh` (which symlinks into `~/.claude/`), and a multi-platform adapter build system. Its upstream instructions live in `UPSTREAM-CLAUDE.md` (renamed from `CLAUDE.md` to avoid confusion with this repo's).
 5. **Some markdown-only skills still need a machine.** The extension heuristic can't see CLI/MCP requirements, so `force-exclude.txt` keeps `gh-cli`, `codeql`, `chrome-mcp-troubleshooting`, the `setup-*-mcp` skills, and the git-worktree skills out of the chat bundle. Extend that list when importing similar skills.
-6. **Skill trigger collisions are real.** With 274 descriptions in play, overlapping skills compete for the same user phrasings. The worst pairs were disambiguated in 2026-07 (secondary skill's description now defers to the primary: `caveman-commit`→`commit`, `caveman-review`→`review-pr`, `superpowers-*`→ unprefixed, `brainstorm`→`brainstorming`); keep new imports out of existing trigger space.
+6. **Skill trigger collisions are real.** With 339 descriptions in play, overlapping skills compete for the same user phrasings. The worst pairs were disambiguated in 2026-07 (secondary skill's description now defers to the primary: `caveman-commit`→`commit`, `caveman-review`→`review-pr`, `superpowers-*`→ unprefixed, `brainstorm`→`brainstorming`); keep new imports out of existing trigger space.
 7. **The remote's default branch is a `claude/…` working branch**, not `main` — there is no `main` branch on the Everything-AI remote at all. Check `git remote show origin` before assuming branch conventions.
-8. **Numbers drift wherever they're hardcoded.** The manifests are now generated and the bundle README count-free, but any prose that names a skill count (including this file's 274/238/36) goes stale on the next import. Trust `build-bundle.sh` output and `validate-skills.sh` over prose.
+8. **Numbers drift wherever they're hardcoded.** The manifests are now generated and the bundle README count-free, but any prose that names a skill count (including this file's 339/295/44) goes stale on the next import. Trust `build-bundle.sh` output and `validate-skills.sh` over prose.
