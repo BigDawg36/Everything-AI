@@ -62,6 +62,7 @@ command-center/
     │   └── powerbi_spec.py     model.json + measures.dax + layout guide
     ├── site/                   Jinja2 → static command-center dashboard
     ├── browser/                OPTIONAL Playwright layer (session + navigators)
+    ├── mcp_server.py           AcuityMD MCP server (read-only tools for Claude)
     └── cli.py                  `python -m command_center ...`
 ```
 
@@ -155,6 +156,61 @@ the flag can never be a silent no-op.
 These are not cosmetic: on the sample data, a low-volume/high-value/fast-growing
 target ranks **#6 (D-tier)** under `disposable` but **#3 (B-tier)** under
 `capital`.
+
+## AcuityMD MCP server (ask Claude about your targets)
+
+`mcp_server.py` turns your AcuityMD export into tools Claude can call directly,
+so you can ask "who are Jordan's top 10 untouched ortho targets in Irvine?"
+instead of filtering a spreadsheet. It reuses the same scoring and NPI logic as
+the CLI, runs on your own machine over stdio, and is read-only.
+
+**How it gets data.** AcuityMD has no public API on this plan, so the server
+reads the CSV you export from AcuityMD. Point it at one file, or at a folder
+that holds only AcuityMD exports: it reads the newest CSV in the folder and
+reloads on its own when a newer export lands. Weekly refresh = export from
+AcuityMD, drop the file in the folder. (Do not point it at a mixed folder like
+`sample_data/`; it would pick up the Power BI file.)
+
+| Tool | What it answers |
+|---|---|
+| `dataset_info` | Which export is loaded, how fresh, tier mix, and which columns were ignored |
+| `find_targets` | Ranked targets filtered by rep, territory, specialty, city, facility, status, tier, min score; optional rescoring profile |
+| `get_target` | Full record for one surgeon or account, by NPI or name |
+| `territory_summary` | Roll-up by rep, territory, specialty, facility, city, or status |
+| `whitespace` | Conquest prospects (high competitor share, untouched) and at-risk accounts (no touch in N days) |
+| `verify_npi` | NPI check digit + live NPPES lookup, and whether the NPI is in your export |
+| `rep_performance` | Power BI trends per rep and quota attainment (optional) |
+| `reload_export` | Force a re-read (normally automatic) |
+
+**Setup, step by step**
+
+1. Install the dependencies once: `pip install -r requirements.txt`.
+2. Make a folder for exports, for example `~/AcuityMD/exports`, and save an
+   AcuityMD target-list export there as CSV.
+3. Add the server to your Claude client.
+   - Claude Code: `claude mcp add acuitymd --env PYTHONPATH=/path/to/command-center/src --env ACUITYMD_TARGETS=$HOME/AcuityMD/exports -- python3 -m command_center.mcp_server`
+   - Claude Desktop: merge `config/claude_desktop_config.example.json` into
+     Settings → Developer → Edit Config, fix the paths, restart Claude.
+4. Ask Claude "what AcuityMD export is loaded?" It calls `dataset_info`. If
+   `columns_ignored` lists columns you need (AcuityMD header names vary by
+   export), map them in `settings.yaml` under `acuitymd.column_map` and ask
+   again. No restart needed.
+
+| Env var | Purpose |
+|---|---|
+| `ACUITYMD_TARGETS` | Required. Export CSV, or a folder of exports (newest wins) |
+| `COMMAND_CENTER_SETTINGS` | `settings.yaml`: scoring profile/weights and `acuitymd.column_map` |
+| `COMMAND_CENTER_REPS` | `reps.yaml` roster, for quota attainment |
+| `POWERBI_METRICS` | Power BI metrics CSV, for `rep_performance` |
+| `NPI_OFFLINE` | `1` = never call NPPES; NPIs get a format check only |
+
+**Before you roll this out:** confirm your AcuityMD agreement allows its data to
+be processed by an AI assistant, and that your company's AI policy covers it.
+Tool results (target names, NPIs, volumes) are sent to Claude when tools run.
+Scores are relative to the current export and are a prioritization aid, not a
+claim; confirm anything customer-facing in AcuityMD itself.
+
+Test: `python -m pytest tests/` launches the server over stdio and calls every tool.
 
 ## Pulling live data (optional browser layer)
 
