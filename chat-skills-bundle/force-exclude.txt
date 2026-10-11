@@ -10,3 +10,4 @@ setup-serena-mcp
 setup-context7-mcp
 setup-arxiv-mcp
 setup-codemap-cli
+agent-reach
