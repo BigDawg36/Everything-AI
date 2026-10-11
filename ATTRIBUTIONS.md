@@ -32,6 +32,7 @@ redistribution.
 | google-gemini skills | *(this commit)* | 4 (`gemini-api-dev`, `gemini-interactions-api`, `gemini-live-api-dev`, `gemini-omni-flash-api`) | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), Google | Apache-2.0 |
 | ECC (Everything Claude Code) | *(this commit)* | 38 (e.g. `api-design`, `brand-discovery`, `eval-harness`, `frontend-slides`, `mle-workflow`, `unified-memory`) | [affaan-m/ECC](https://github.com/affaan-m/ECC), Affaan M | MIT |
 | andrej-karpathy-skills | *(this commit)* | 1 (`karpathy-guidelines`) | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) (upstream `2c60614`), forrestchang | MIT |
+| Agent Reach | *(this commit)* | 1 (`agent-reach`; router for 16 web/social platforms, needs the `agent-reach` CLI installed separately) | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) @ `94f06c1`, Agent Eyes | MIT, copy at `.claude/skills/agent-reach/LICENSE` |
 
 ## License notes (read before redistributing)
 
