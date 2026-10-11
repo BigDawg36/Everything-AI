@@ -33,6 +33,7 @@ redistribution.
 | ECC (Everything Claude Code) | *(this commit)* | 38 (e.g. `api-design`, `brand-discovery`, `eval-harness`, `frontend-slides`, `mle-workflow`, `unified-memory`) | [affaan-m/ECC](https://github.com/affaan-m/ECC), Affaan M | MIT |
 | andrej-karpathy-skills | *(this commit)* | 1 (`karpathy-guidelines`) | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) (upstream `2c60614`), forrestchang | MIT |
 | Agent Reach | *(this commit)* | 1 (`agent-reach`; router for 16 web/social platforms, needs the `agent-reach` CLI installed separately) | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) @ `94f06c1`, Agent Eyes | MIT, copy at `.claude/skills/agent-reach/LICENSE` |
+| arena-skill | *(this commit)* | 1 (`arena`; spawns sub-agents, needs Python 3.8+) | [Jakeschincariol/arena-skill](https://github.com/Jakeschincariol/arena-skill), Jake Schincariol | MIT, copy at `.claude/skills/arena/LICENSE` |
 
 ## License notes (read before redistributing)
 
