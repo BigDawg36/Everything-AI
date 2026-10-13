@@ -35,6 +35,8 @@ redistribution.
 | Agent Reach | *(this commit)* | 1 (`agent-reach`; router for 16 web/social platforms, needs the `agent-reach` CLI installed separately) | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) @ `94f06c1`, Agent Eyes | MIT, copy at `.claude/skills/agent-reach/LICENSE` |
 | arena-skill | *(this commit)* | 1 (`arena`; spawns sub-agents, needs Python 3.8+) | [Jakeschincariol/arena-skill](https://github.com/Jakeschincariol/arena-skill), Jake Schincariol | MIT, copy at `.claude/skills/arena/LICENSE` |
 | power-bi-agentic-development | *(this commit)* | 7 (`dax`, `tmdl`, `semantic-model`, `lineage-analysis`, `te-cli`, `connect-pbid`, `pbir-cli`; all but `dax` and `tmdl` ship scripts, see `SCRIPT-AUDIT.md`) | [data-goblin/power-bi-agentic-development](https://github.com/data-goblin/power-bi-agentic-development) @ `4936264`, path `plugins/semantic-models/skills/dax` | **GPL-3.0** ⚠ see notes |
+| skills-for-fabric (Microsoft) | *(this commit)* | 2 (`powerbi-report-cli`, `fabriciq`; plus shared `.claude/common/*.md` the skills link to) | [microsoft/skills-for-fabric](https://github.com/microsoft/skills-for-fabric) @ `bc42aaf` | MIT |
+| claude-code-skills (daymade) | *(this commit)* | 1 (`frontend-visual-qa`; ships Node/Python scripts, not yet run) | [daymade/claude-code-skills](https://github.com/daymade/claude-code-skills) @ `1327636` | MIT |
 
 ## License notes (read before redistributing)
 
