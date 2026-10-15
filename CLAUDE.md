@@ -4,7 +4,7 @@ Operational instructions for Claude Code sessions in this repo. Architecture and
 
 ## What this repo is
 
-A collection of **339 Claude Code skills** under `.claude/skills/` (Markdown, one directory per skill), 5 sales subagents under `.claude/agents/`, and a packaging pipeline in `chat-skills-bundle/` that zips the chat-compatible skills (currently 295) for upload to Claude.ai chat. **There is no application code.** The skills are the product.
+A collection of **350+ Claude Code skills** under `.claude/skills/` (Markdown, one directory per skill), 5 sales subagents under `.claude/agents/`, and a packaging pipeline in `chat-skills-bundle/` that zips the chat-compatible skills (count: see build output) for upload to Claude.ai chat. **There is no application code.** The skills are the product.
 
 ## Commands
 
@@ -19,7 +19,7 @@ bash chat-skills-bundle/build-bundle.sh
 # Prints: "chat-friendly: N | excluded: M (scripts: X, forced: Y)" — verify N+M == skill count
 
 # Count skills / sanity-check the tree
-ls .claude/skills | grep -v -E '^(LICENSE|README.md)$' | wc -l   # 339 as of 2026-09
+ls .claude/skills | grep -v -E '^(LICENSE|README.md)$' | wc -l   # 354 as of 2026-10; prose counts drift, trust this command
 ```
 
 Run **both** commands after any change that adds/removes a skill, touches frontmatter, or adds/removes a script file inside a skill — script presence flips a skill's chat/machine classification.
