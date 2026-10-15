@@ -11,3 +11,6 @@ setup-context7-mcp
 setup-arxiv-mcp
 setup-codemap-cli
 agent-reach
+imsc-monday-edge
+imsc-course-to-adoption
+rd2-team-digest
