@@ -13,7 +13,6 @@ setup-codemap-cli
 agent-reach
 imsc-monday-edge
 imsc-course-to-adoption
-rd2-team-digest
 imsc-coding-guide-qa
 imsc-simulator-scenario-audit
 imsc-surgeon-target-list

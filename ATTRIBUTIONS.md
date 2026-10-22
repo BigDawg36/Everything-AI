@@ -37,7 +37,7 @@ redistribution.
 | power-bi-agentic-development | `cc0b526`, `8f22184`, `5ee7098` | 7 (`dax`, `tmdl`, `semantic-model`, `lineage-analysis`, `te-cli`, `connect-pbid`, `pbir-cli`; all but `dax` and `tmdl` ship scripts, see `SCRIPT-AUDIT.md`) | [data-goblin/power-bi-agentic-development](https://github.com/data-goblin/power-bi-agentic-development) @ `4936264`, path `plugins/semantic-models/skills/dax` | **GPL-3.0** ⚠ see notes |
 | skills-for-fabric (Microsoft) | `9e2308a` | 2 (`powerbi-report-cli`, `fabriciq`; plus shared `.claude/common/*.md` the skills link to) | [microsoft/skills-for-fabric](https://github.com/microsoft/skills-for-fabric) @ `bc42aaf` | MIT |
 | claude-code-skills (daymade) | `9e2308a` | 1 (`frontend-visual-qa`; ships Node/Python scripts, not yet run) | [daymade/claude-code-skills](https://github.com/daymade/claude-code-skills) @ `1327636` | MIT |
-| IMSC original skills | `76af557` | 5 (`imsc-monday-edge`, `imsc-course-to-adoption`, `imsc-coding-guide-qa`, `imsc-simulator-scenario-audit`, `rd2-team-digest`; the last is personal/family use only; the two newest are SKILL.md-only, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
+| IMSC original skills | `76af557` | 4 (`imsc-monday-edge`, `imsc-course-to-adoption`, `imsc-coding-guide-qa`, `imsc-simulator-scenario-audit`; the two newest are SKILL.md-only, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
 | prompt-master | `b3401c2` | 1 (`prompt-master`, frontmatter version 1.8.0) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
 | remove-ai-marks | `0978dde` | 1 (`remove-ai-marks`) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
 | IMSC original skills (later) | this commit | 1 (`imsc-surgeon-target-list`; SKILL.md + `references/scoring.md`, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
@@ -64,8 +64,8 @@ redistribution.
   either outside the owner's team until the source is identified. Both are still in the
   chat bundle; add them to `chat-skills-bundle/force-exclude.txt` if the bundle is shared.
 - **Original, non-redistributable — IMSC skills.** `imsc-monday-edge`,
-  `imsc-course-to-adoption` and `rd2-team-digest` are the owner's own work and contain
-  company or family detail. They are excluded from the chat bundle.
+  `imsc-course-to-adoption` are the owner's own work and contain
+  company detail. They are excluded from the chat bundle.
 - MIT and Apache-2.0 families are fine to redistribute with this attribution file included
   (the bundle build copies `ATTRIBUTIONS.md` into the zip).
 
