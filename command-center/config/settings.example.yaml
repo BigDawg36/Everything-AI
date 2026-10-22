@@ -40,6 +40,17 @@ acuitymd:
   export_selector: "text=Export"    # AcuityMD's export control
   table_selector: "table"           # fallback scrape target
 
+  # Used by the CSV loader and the MCP server: map AcuityMD export headers
+  # (left, exact text, case-insensitive) to the fields the scorer understands
+  # (right). Ask Claude for `dataset_info` to see which columns were ignored.
+  # Fields: name, npi, specialty, facility, city, state, territory, rep,
+  # procedure_volume, est_annual_value, competitor_share, growth_rate, status,
+  # last_touch, notes.
+  # column_map:
+  #   "Physician Name": name
+  #   "Primary Specialty": specialty
+  #   "Total Procedures": procedure_volume
+
 powerbi:
   logged_in_selector: "[aria-label='Power BI']"
   # The "More options (...)" button on the specific visual you export from.

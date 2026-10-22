@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "acuitymd": {
+      "command": "python3",
+      "args": ["-m", "command_center.mcp_server"],
+      "env": {
+        "PYTHONPATH": "/ABSOLUTE/PATH/TO/Everything-AI/command-center/src",
+        "ACUITYMD_TARGETS": "/ABSOLUTE/PATH/TO/AcuityMD/exports",
+        "COMMAND_CENTER_SETTINGS": "/ABSOLUTE/PATH/TO/Everything-AI/command-center/config/settings.yaml",
+        "COMMAND_CENTER_REPS": "/ABSOLUTE/PATH/TO/Everything-AI/command-center/config/reps.yaml",
+        "POWERBI_METRICS": "/ABSOLUTE/PATH/TO/powerbi_metrics.csv"
+      }
+    }
+  }
+}

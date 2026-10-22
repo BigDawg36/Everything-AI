@@ -27,10 +27,21 @@ redistribution.
 | playwright-skill | `6ba24db` | 1 | [lackeyjb/playwright-skill](https://github.com/lackeyjb/playwright-skill) | MIT |
 | ios-simulator-skill | `51fa065` | 1 | [conorluddy/ios-simulator-skill](https://github.com/conorluddy/ios-simulator-skill), Conor Luddy | MIT |
 | stop-slop | `bf9f2a8` | 1 | [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop), Hardik Pandya | MIT |
-| last30days-skill | *(this commit)* | 1 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill), mvanhorn | MIT |
-| claude-video-vision | *(this commit)* | 1 (`video-perception`) + commands + agent + MCP server | [jordanrendric/claude-video-vision](https://github.com/jordanrendric/claude-video-vision), Jordan Vasconcelos | MIT |
-| google-gemini skills | *(this commit)* | 4 (`gemini-api-dev`, `gemini-interactions-api`, `gemini-live-api-dev`, `gemini-omni-flash-api`) | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), Google | Apache-2.0 |
-| ECC (Everything Claude Code) | *(this commit)* | 38 (e.g. `api-design`, `brand-discovery`, `eval-harness`, `frontend-slides`, `mle-workflow`, `unified-memory`) | [affaan-m/ECC](https://github.com/affaan-m/ECC), Affaan M | MIT |
+| last30days-skill | `a0c2127` | 1 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill), mvanhorn | MIT |
+| claude-video-vision | `2e36cb4` | 1 (`video-perception`) + commands + agent + MCP server | [jordanrendric/claude-video-vision](https://github.com/jordanrendric/claude-video-vision), Jordan Vasconcelos | MIT |
+| google-gemini skills | `d8f0899` | 4 (`gemini-api-dev`, `gemini-interactions-api`, `gemini-live-api-dev`, `gemini-omni-flash-api`) | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), Google | Apache-2.0 |
+| ECC (Everything Claude Code) | `ddecd80` | 38 (e.g. `api-design`, `brand-discovery`, `eval-harness`, `frontend-slides`, `mle-workflow`, `unified-memory`) | [affaan-m/ECC](https://github.com/affaan-m/ECC), Affaan M | MIT |
+| andrej-karpathy-skills | `f331629` | 1 (`karpathy-guidelines`) | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) (upstream `2c60614`), forrestchang | MIT |
+| Agent Reach | `8171d52` | 1 (`agent-reach`; router for 16 web/social platforms, needs the `agent-reach` CLI installed separately) | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) @ `94f06c1`, Agent Eyes | MIT, copy at `.claude/skills/agent-reach/LICENSE` |
+| arena-skill | `eefea6c` | 1 (`arena`; spawns sub-agents, needs Python 3.8+) | [Jakeschincariol/arena-skill](https://github.com/Jakeschincariol/arena-skill), Jake Schincariol | MIT, copy at `.claude/skills/arena/LICENSE` |
+| power-bi-agentic-development | `cc0b526`, `8f22184`, `5ee7098` | 7 (`dax`, `tmdl`, `semantic-model`, `lineage-analysis`, `te-cli`, `connect-pbid`, `pbir-cli`; all but `dax` and `tmdl` ship scripts, see `SCRIPT-AUDIT.md`) | [data-goblin/power-bi-agentic-development](https://github.com/data-goblin/power-bi-agentic-development) @ `4936264`, path `plugins/semantic-models/skills/dax` | **GPL-3.0** ⚠ see notes |
+| skills-for-fabric (Microsoft) | `9e2308a` | 2 (`powerbi-report-cli`, `fabriciq`; plus shared `.claude/common/*.md` the skills link to) | [microsoft/skills-for-fabric](https://github.com/microsoft/skills-for-fabric) @ `bc42aaf` | MIT |
+| claude-code-skills (daymade) | `9e2308a` | 1 (`frontend-visual-qa`; ships Node/Python scripts, not yet run) | [daymade/claude-code-skills](https://github.com/daymade/claude-code-skills) @ `1327636` | MIT |
+| IMSC original skills | `76af557` | 4 (`imsc-monday-edge`, `imsc-course-to-adoption`, `imsc-coding-guide-qa`, `imsc-simulator-scenario-audit`; the two newest are SKILL.md-only, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
+| prompt-master | `b3401c2` | 1 (`prompt-master`, frontmatter version 1.8.0) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
+| remove-ai-marks | `0978dde` | 1 (`remove-ai-marks`) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
+| IMSC original skills (later) | this commit | 1 (`imsc-surgeon-target-list`; SKILL.md + `references/scoring.md`, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
+| vercel-labs skills | this commit | 1 (`find-skills`; installed via `npx skills add vercel-labs/skills@find-skills`, tracked in `skills-lock.json`) | [vercel-labs/skills](https://github.com/vercel-labs/skills), Vercel | MIT |
 
 ## License notes (read before redistributing)
 
@@ -48,6 +59,13 @@ redistribution.
   unlicensed. Personal use is low-risk; **for public redistribution of the chat bundle,
   either obtain permission, or drop these two skills from the bundle**
   (add them to `chat-skills-bundle/force-exclude.txt`).
+- **Unknown provenance — prompt-master and remove-ai-marks.** Upstream author and license
+  were not recorded at import and cannot be derived from the files. Do not redistribute
+  either outside the owner's team until the source is identified. Both are excluded from
+  the chat bundle via `chat-skills-bundle/force-exclude.txt`.
+- **Original, non-redistributable — IMSC skills.** `imsc-monday-edge`,
+  `imsc-course-to-adoption` are the owner's own work and contain
+  company detail. They are excluded from the chat bundle.
 - MIT and Apache-2.0 families are fine to redistribute with this attribution file included
   (the bundle build copies `ATTRIBUTIONS.md` into the zip).
 

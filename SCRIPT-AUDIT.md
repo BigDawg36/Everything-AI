@@ -236,3 +236,49 @@ No flags.
 | `zeroize-audit/tools/generate_poc.py` | exec |
 | `zeroize-audit/tools/scripts/check_rust_asm.py` | exec |
 
+---
+
+# Added 2026-10-12: power-bi-agentic-development skills
+
+Same mechanical flags, plus `.csx` and `.cs` files. 23 scripts across 5 skills (`dax` and `tmdl` ship none). The totals at the top of this file do not include this section. Notes from a manual read:
+- `pbir-cli/bin/fetch.sh` is run by hand only. It uses `gh release download` to pull portable `pbir` binaries from a third-party repo (`maxanatsko/pbir.tools`). Nothing else calls it.
+- `connect-pbid` PowerShell scripts install Microsoft TOM/ADOMD NuGet packages into `$env:TEMP` and connect to the local Power BI Desktop model. Some of them modify the open model. `daxlib.sh` fetches packages from GitHub (`api.github.com`, `raw.githubusercontent.com`).
+- `semantic-model` and `lineage-analysis` Python scripts call `api.powerbi.com` read-only, using a token from `az account get-access-token` or `DefaultAzureCredential`. No credentials are stored in the files.
+
+## `connect-pbid` (11 scripts, 10 flagged)
+
+| Script | Flags |
+|---|---|
+| `connect-pbid/daxlib.sh` | network, home-writes, exec |
+| `connect-pbid/scripts/connect-and-enumerate.ps1` | home-writes, exec |
+| `connect-pbid/scripts/connect-from-mac.sh` | home-writes |
+| `connect-pbid/scripts/create-field-parameter.ps1` | home-writes, exec |
+| `connect-pbid/scripts/debug-dax.ps1` | home-writes |
+| `connect-pbid/scripts/explore-model.ps1` | home-writes, exec |
+| `connect-pbid/scripts/load-tmdl.ps1` | home-writes, exec |
+| `connect-pbid/scripts/modify-tom-objects.ps1` | home-writes, exec |
+| `connect-pbid/scripts/query-dax.ps1` | home-writes, exec |
+| `connect-pbid/scripts/refresh-table.ps1` | home-writes, exec |
+
+## `lineage-analysis` (1 scripts, 1 flagged)
+
+| Script | Flags |
+|---|---|
+| `lineage-analysis/scripts/get-downstream-reports.py` | network |
+
+## `pbir-cli` (1 scripts, 1 flagged)
+
+| Script | Flags |
+|---|---|
+| `pbir-cli/bin/fetch.sh` | network |
+
+## `semantic-model` (6 scripts, 2 flagged)
+
+| Script | Flags |
+|---|---|
+| `semantic-model/scripts/get_model_info.py` | network, exec |
+| `semantic-model/scripts/get_semantic_model_ai_metadata.py` | exec |
+
+## `te-cli` (4 scripts, 0 flagged)
+
+No flags.
