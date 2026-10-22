@@ -1,0 +1,21 @@
+# Koa configuration. Tune behavior here, not in code.
+
+[assistant]
+name = "Koa"
+owner = "Mike"
+
+[model]
+provider = "anthropic"          # the only provider built so far; "openai" later
+name = "claude-opus-5-5"
+effort = "medium"               # low | medium | high | xhigh | max
+max_tokens = 16000
+timeout_seconds = 90
+# Server-side retry on another model if a safety classifier declines a request.
+refusal_fallback = true
+
+[schedule]
+# Used by the heartbeat in Tier 5. Pacific time, weekdays.
+timezone = "America/Los_Angeles"
+work_start = "07:30"
+work_end = "17:00"
+work_days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
