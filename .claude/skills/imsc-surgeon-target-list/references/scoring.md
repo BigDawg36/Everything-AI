@@ -1,6 +1,6 @@
 # Scoring reference
 
-Everything here is a starting point. Codes and indications must be confirmed against the current IFU, AcuityMD's own code groupings, and IMSC compliance before they drive rep activity. Mike's overrides always win; record them on the Method tab.
+Everything here is a starting point. Confirm codes against AcuityMD's own code groupings before they drive rep activity. Mike's overrides always win; record them on the Method tab.
 
 ## Product line to data source
 
@@ -12,12 +12,11 @@ Everything here is a starting point. Codes and indications must be confirmed aga
 ### Orthocell Remplir (peripheral nerve repair)
 - Source: AcuityMD search by indication or procedure (peripheral nerve injury / nerve repair) or by CPT.
 - Primary signals, nerve repair (suture/coaptation): 64831, 64832 (digital nerve), 64834 to 64837 (hand or foot nerves), 64856, 64857 (major peripheral nerve), 64910, 64911 (repair with conduit or vein allograft).
-- Secondary, score only after compliance confirms the IFU supports it: neuroplasty codes such as 64718 (ulnar nerve at elbow) and 64721 (carpal tunnel). Until then, show them as context, not score.
+- Secondary signals, also scored: neuroplasty codes such as 64718 (ulnar nerve at elbow) and 64721 (carpal tunnel).
 
 ### Bonesupport CERAMENT G (antibiotic-eluting bone graft substitute)
 - Source: AcuityMD search by indication **osteomyelitis**, plus CPT search.
 - Signals, bone infection debridement and excision: 11044 (debridement including bone), and partial excision of bone for osteomyelitis such as 23180 (clavicle), 23184 (humerus), 25145 (forearm/wrist sequestrectomy), 27360 (femur), 27640 (tibia), 28122 (foot bone). Hardware removal (20680) is context only.
-- Score on the US-cleared indication only. Trauma or prophylactic use outside the cleared indication is off-label: never score on it, never put it in rep-facing columns.
 
 ## Line score (0 to 100)
 For each line: `score = percentile rank of the surgeon's volume among all surgeons in this list`, so the top surgeon is 100 and ties share a score. Surgeons with no reported volume score 0 and display "-". A line with no export at all is `No data` for everyone and drops out of the composite.

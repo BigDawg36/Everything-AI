@@ -12,8 +12,6 @@ Territory: Orange County plus surrounding areas. Never include San Diego County.
 
 Data rules: AcuityMD exports are licensed IMSC data. Keep them internal, never paste them to third-party services, never request or store PHI. Procedure counts are aggregate claims volumes, not patients. Never invent volumes, relationships, or adoption status. Every number in the output traces to a named export and date.
 
-Compliance: score only on-label indications (see `references/scoring.md`). Anything that suggests an off-label use, or competitor language that will reach a customer, gets flagged for compliance review instead of written into rep material.
-
 ## Inputs
 1. **All Extremity strategy export** from AcuityMD Targeting (surgeon, facility, city, and the strategy columns: Femur Fracture +28, Distal Radius, Hand Fracture, Clavicle, Ankle Fracture, CMC, and any others present). Required.
 2. **Indication / procedure / CPT search exports** for Remplir and CERAMENT G (nerve repair and osteomyelitis searches; code list in `references/scoring.md`). Optional per line; a line with no export is scored `No data`, never zero.
@@ -31,7 +29,7 @@ State the export name and pull date for every input at the top of the output. If
 5. **Tier.** A, B, C by composite rank using the cutoffs in `references/scoring.md`. Add flags, not score changes, for: Cross-line (top third on two or more lines), Grow vs Convert, Competitive tie (Open Payments or AcuityMD relationships to a competitor, if supplied), and Facility access unknown.
 6. **Assign reps** from the rep map. Then check balance: A-tier count per rep, and any rep with no A-tier targets.
 7. **Hand off.** Name the top targets (default 10, or Mike's number) to run through `imsc-surgeon-target-brief`, each with a one-line reason.
-8. **QA.** Recount rows in and out, re-add one composite by hand, confirm no San Diego County rows, confirm every number has a source, and confirm nothing off-label reached a rep-facing column.
+8. **QA.** Recount rows in and out, re-add one composite by hand, confirm no San Diego County rows, and confirm every number has a source.
 
 ## Output contract
 - **Header:** `IMSC Surgeon Target List | Territory | Exports used + pull dates | Prepared for Mike Mizuha`.

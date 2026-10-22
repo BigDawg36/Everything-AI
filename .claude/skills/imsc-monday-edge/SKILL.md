@@ -32,11 +32,9 @@ Turn one weekly request into a finished, approval-ready issue of The Monday Edge
    - The three subject lines.
    - A source list for every claim.
    - The updated Covered Log (append this issue's topics).
-   - A compliance flag list (see below).
 
-## Compliance guardrails
-- Product content must stay on-label and match the manufacturer's approved indications and IFU language. No off-label suggestions, no comparative superiority claims, no clinical outcome claims beyond what the cited source states, and no pricing.
-- Flag every product or clinical claim in the compliance list with: "Needs compliance review before use with customers or reps."
+## Guardrails
+- No clinical outcome claims beyond what the cited source states, and no pricing.
 - No PHI, patient names, case details, or account pricing anywhere in the issue.
 
 ## Output standard
