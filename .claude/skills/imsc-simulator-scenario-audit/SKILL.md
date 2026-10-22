@@ -1,6 +1,6 @@
 ---
 name: imsc-simulator-scenario-audit
-description: Design and audit clinically accurate, realistic, compliance-safe synthetic surgeon and podiatrist conversations for the InterMed SoCal Surgeon Call Simulator and ElevenLabs voice agent. Use for simulator scenario prompts, tough objections, rep coaching scorecards, call transitions, and synthetic QA of sales-call roleplays. This is a scenario and training-content skill, not UI testing.
+description: Design and audit clinically accurate, realistic synthetic surgeon and podiatrist conversations for the InterMed SoCal Surgeon Call Simulator and ElevenLabs voice agent. Use for simulator scenario prompts, tough objections, rep coaching scorecards, call transitions, and synthetic QA of sales-call roleplays. This is a scenario and training-content skill, not UI testing.
 ---
 
 # IMSC Surgeon Simulator Scenario Audit
@@ -21,7 +21,7 @@ Build difficult but winnable, realistic voice roleplays that coach InterMed SoCa
 4. Platform constraints when known: mobile and desktop, ElevenLabs conversational agent, Netlify-hosted app, interruptions and hospital Wi-Fi sensitivity.
 5. Approved objectives and rubric from the user, when supplied. Do not silently redefine the assessment standard.
 
-Where clinical claims or approved indications are not supplied, use explicit **[APPROVED PRODUCT FACT REQUIRED]** placeholders. Do not infer comparative superiority, FDA indications, infection treatment/eradication, outcomes, reimbursement, pricing, or off-label surgical techniques.
+Where clinical claims or indications are not supplied, use explicit **[PRODUCT FACT REQUIRED]** placeholders. Do not invent device specifications, FDA indications, study results, or pricing.
 
 ## Scenario design procedure
 1. Pick a **specific** specialty and real-world call context (e.g., a busy surgeon between cases, a podiatrist planning a complex reconstruction). State time pressure and why this visit may matter.
@@ -31,7 +31,7 @@ Where clinical claims or approved indications are not supplied, use explicit **[
 5. Design 3 levels of objection depth. Examples: existing vendor preference, staff/setup burden, inventory availability, value vs cost, prior clinical concern, insufficient evidence, time pressure. All objections must remain fictional and non-patient-specific.
 6. Write the **voice-agent system prompt** with explicit persona, behavior constraints, what to reveal only if the rep asks, interruption behavior, realism calibration, allowed and prohibited claims, success/failure rules, safety exits, and wrap-up trigger. Require concise spoken turns; never hallucinate device specifications.
 7. Create a scoring rubric totaling 100 points: preparation/relevance 10, discovery 25, clinical/product accuracy and claims discipline 25, objection handling 20, next step and mutual action 15, professionalism and empathy 5. If the user already supplied a rubric, use theirs instead and note differences.
-8. Include absolute disqualifiers: invented or off-label claims, patient identifiers, promising reimbursement/coverage, fabricated study results, coercive sales tactics, or knowingly misleading statements. A scenario may show a learning mistake but may never reward it.
+8. Include absolute disqualifiers: invented claims, patient identifiers, fabricated study results, coercive sales tactics, or knowingly misleading statements. A scenario may show a learning mistake but may never reward it.
 9. Provide a brief two-pass synthetic transcript fixture: one weak rep exchange and one stronger rep exchange. Score both against the same rubric and explain why the stronger one did better. Use fictional identities and no real patient/case details.
 10. Specify deployment-safe handoff notes separately from QA results. Do **not** change a live ElevenLabs agent, publish to Netlify, or modify the simulator unless Mike explicitly approved that change.
 
@@ -49,13 +49,11 @@ Return in this order:
 2. **Agent prompt**: copy/paste-ready self-contained voice-roleplay system instruction that includes response limits, branching and guardrails.
 3. **Scorecard**: six criteria with weights and 1-2 observable high-scoring behaviors each.
 4. **Synthetic tests**: weak/strong examples, scores and coaching notes, all invented and de-identified.
-5. **Clinical claim review**: table of each product-specific claim, evidence or [APPROVED PRODUCT FACT REQUIRED], and whether allowed in training.
+5. **Claim sources**: table of each product-specific claim with its evidence or [PRODUCT FACT REQUIRED].
 6. **Handoff**: proposed changes to ElevenLabs instructions and acceptance tests; status **Draft, Not deployed** unless deployment was explicitly requested and verified.
 
-Every rep-facing or customer-facing product claim requires this exact flag: **Needs compliance review before use with customers or reps.** Do not present a scenario as externally shareable until approval has occurred.
-
 ## Style and execution
-Premium InterMed SoCal black-and-gold theme if visuals requested, otherwise structured readable plain text. Direct, professional, concise, no em dashes, light bold. Preserve Mike's established rep objectives and never assume that the hardest call requires a sale. Credible no-decision or trial hesitation is a valid end state. Prefer the smallest change that fixes the requested training issue. Never introduce unauthorized clinical or product claims or upload sensitive company data to unknown plugins.
+Premium InterMed SoCal black-and-gold theme if visuals requested, otherwise structured readable plain text. Direct, professional, concise, no em dashes, light bold. Preserve Mike's established rep objectives and never assume that the hardest call requires a sale. Credible no-decision or trial hesitation is a valid end state. Prefer the smallest change that fixes the requested training issue. Never invent clinical or product claims or upload sensitive company data to unknown plugins.
 
 ## Safe trigger example
-"Use IMSC Simulator Scenario Audit to build a difficult but fair 6-minute voice roleplay with a skeptical hand surgeon considering an approved Acumed product. Use placeholders where the approved indication is not provided, then score one weak and one strong synthetic call."
+"Use IMSC Simulator Scenario Audit to build a difficult but fair 6-minute voice roleplay with a skeptical hand surgeon considering an Acumed product. Use placeholders where the indication is not provided, then score one weak and one strong synthetic call."

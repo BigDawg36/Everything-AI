@@ -6,9 +6,9 @@ description: Create, update, verify, and quality-check InterMed SoCal procedure 
 # IMSC Coding Guide QA
 
 ## Mission and boundaries
-Produce a compact, visually polished, **educational** InterMed SoCal coding reference, not an instruction to bill a particular code. Prioritize clinical accuracy, current source dates, exact procedure context, and a clean black-and-gold IMSC design. If not enough evidence exists for a coding claim, mark it **UNVERIFIED**, explain what is missing, and exclude it from the customer-facing handout until reviewed. Do not present product implantation as automatically establishing eligibility for any procedure code, separate reimbursement, or coverage.
+Produce a compact, visually polished, **educational** InterMed SoCal coding reference, not an instruction to bill a particular code. Prioritize clinical accuracy, current source dates, exact procedure context, and a clean black-and-gold IMSC design. If not enough evidence exists for a coding claim, mark it **UNVERIFIED**, explain what is missing, and exclude it from the customer-facing handout until verified. Do not present product implantation as automatically establishing eligibility for any procedure code, separate reimbursement, or coverage.
 
-**Mandatory banner for customer-facing or rep-facing output:** "Needs compliance review before use with customers or reps." Do not release or represent approval without documented review by IMSC compliance and qualified coding specialists. Do not provide patient-specific coding advice, legal advice, billing guarantees, or off-label promotion.
+Do not provide patient-specific coding advice or billing guarantees.
 
 ## Use when
 - Mike asks for an IMSC commonly used nerve wrap or related procedure coding guide or a modification of such a guide.
@@ -44,19 +44,18 @@ If setting/year are missing, assume the current calendar year **only for researc
 - If the user says to remove sources/review notes from the handout, remove **only their display**. Preserve a distinct internal evidence-and-review file; do not claim the codes are verified without an audit trail.
 
 ## Required deliverables
-A. **Distribution draft**: copy-ready guide, and PDF when requested, marked pending compliance review.
+A. **Distribution draft**: copy-ready guide, and PDF when requested.
 B. **Internal verification log**: each proposed entry with status **Verified | Needs coder confirmation | Unsupported**; the official source and exact effective date; mismatches between old/new references; and a compact unresolved-items list.
-C. **QA summary**: code-year checked, patient/PHI scan, product-claim scan, professional vs facility ambiguity scan, print-layout scan, and named reviewer approval status.
+C. **QA summary**: code-year checked, patient/PHI scan, product-claim scan, professional vs facility ambiguity scan, and print-layout scan.
 
-## Privacy, confidentiality and compliance
+## Privacy and confidentiality
 - Do not request, retain, print, upload, or send patient identifiers, PHI, case-level notes, operative narratives, personally identifying surgeon-level patient data, or confidential account pricing to any third-party skill or service.
 - Use only sanitized procedure examples. Never include actual patient scenarios in a generated sample.
-- Product claims must be supported by current approved labeling and cleared/approved indications; no outcomes, infection, superiority or cost savings assertions without approved evidence.
+- Product claims must be supported by a cited source; no outcomes, infection, superiority or cost savings assertions without evidence.
 - Do not describe anything as FDA approved/cleared unless the specific product and indication are verified.
-- **Needs compliance review before use with customers or reps.** Also require a qualified coding professional review for reimbursement and coding statements.
 
 ## Writing and approval rules
 Direct, warm, professional, no em dashes, light bold, short sentences, no filler. Prefer one page only when readable. Do not bury unresolved coding risks in small footnotes. Before changing user-supplied files, preserve a copy. No publishing, distribution, email, claim submission, or mutation of account data without explicit permission.
 
 ## Safe trigger example
-"Use IMSC Coding Guide QA to update our nerve wrap coding handout for 2026 using these two approved reference PDFs. Verify against CMS where applicable, distinguish professional vs facility, and deliver a review-ready PDF plus a separate source log."
+"Use IMSC Coding Guide QA to update our nerve wrap coding handout for 2026 using these two approved reference PDFs. Verify against CMS where applicable, distinguish professional vs facility, and deliver a finished PDF plus a separate source log."

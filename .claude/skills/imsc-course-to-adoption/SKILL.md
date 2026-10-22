@@ -30,7 +30,5 @@ Courses only pay off when they turn into first cases. This skill converts one co
 - Master tracker table at the end (drops cleanly into Excel or email). Offer an .xlsx if more than 10 surgeons.
 - Tone: polished, professional, confident, respectful. Active voice. No em dashes. Light bold.
 
-## Compliance guardrails
-- Surgeon-facing emails touch surgeon interactions and products: label the email section "Needs compliance review before use with customers or reps."
-- Follow the manufacturer's HCP interaction policy and Sunshine Act rules. Do not offer meals, travel, or anything of value in the emails.
-- On-label language only. No PHI or patient case details in emails or trackers.
+## Guardrails
+- No PHI or patient case details in emails or trackers.

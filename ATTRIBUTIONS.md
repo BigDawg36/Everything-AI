@@ -40,6 +40,8 @@ redistribution.
 | IMSC original skills | `76af557` | 5 (`imsc-monday-edge`, `imsc-course-to-adoption`, `imsc-coding-guide-qa`, `imsc-simulator-scenario-audit`, `rd2-team-digest`; the last is personal/family use only; the two newest are SKILL.md-only, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
 | prompt-master | `b3401c2` | 1 (`prompt-master`, frontmatter version 1.8.0) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
 | remove-ai-marks | `0978dde` | 1 (`remove-ai-marks`) | **Unknown.** Upstream not recorded at import | **Unknown** ⚠ see notes |
+| IMSC original skills (later) | this commit | 1 (`imsc-surgeon-target-list`; SKILL.md + `references/scoring.md`, no scripts) | Original work, Mike Mizuha / InterMed SoCal | Proprietary, not for redistribution; excluded from the chat bundle |
+| vercel-labs skills | this commit | 1 (`find-skills`; installed via `npx skills add vercel-labs/skills@find-skills`, tracked in `skills-lock.json`) | [vercel-labs/skills](https://github.com/vercel-labs/skills), Vercel | MIT |
 
 ## License notes (read before redistributing)
 
