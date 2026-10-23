@@ -66,7 +66,7 @@ redistribution.
 - **Unknown provenance — prompt-master and remove-ai-marks.** Upstream author and license
   were not recorded at import and cannot be derived from the files. Do not redistribute
   either outside the owner's team until the source is identified. Both are excluded from
-  the chat bundle via `chat-skills-bundle/force-exclude.txt`.
+  the chat bundle via `chat-skills-bundle/license-exclude.txt` (license/provenance, not a missing runtime).
 - **Original, non-redistributable — IMSC skills.** `imsc-monday-edge`,
   `imsc-course-to-adoption` are the owner's own work and contain
   company detail. They are excluded from the chat bundle.

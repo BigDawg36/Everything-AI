@@ -1,0 +1,7 @@
+# Guidance-only skills omitted from the redistributable Claude.ai chat bundle
+# because the license is unknown or redistribution is not allowed. They do not
+# need a CLI, MCP server, git checkout, or other local runtime. One name per
+# line. See ATTRIBUTIONS.md. A name listed here is reported as a license
+# exclusion even if it also appears in force-exclude.txt.
+prompt-master
+remove-ai-marks
