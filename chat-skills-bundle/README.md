@@ -2,7 +2,7 @@
 
 A ready-to-upload bundle of the **chat-friendly skills** from this collection, for the **Claude.ai app** (web/desktop chat).
 
-These are the skills that run as pure guidance/knowledge — no local machine, OS tools, external CLIs, or MCP servers required — so they work inside Claude.ai's sandbox. The machine-only skills are listed in `EXCLUDED.md` and belong in Claude Code. Current counts live in `MANIFEST.md` and `EXCLUDED.md`, which are **generated** by `build-bundle.sh` — don't hand-edit them, and don't trust prose counts anywhere else.
+These are the skills that run as pure guidance/knowledge — no local machine, OS tools, external CLIs, or MCP servers required — so they work inside Claude.ai's sandbox. Skills left out, and why, are listed in `EXCLUDED.md`: some need Claude Code, and some are guidance-only but cannot be redistributed. Current counts live in `MANIFEST.md` and `EXCLUDED.md`, which are **generated** by `build-bundle.sh` — don't hand-edit them, and don't trust prose counts anywhere else.
 
 ## What's inside the zip
 
@@ -21,7 +21,7 @@ everything-ai-chat-skills.zip
 ## How the split is decided
 
 1. **Heuristic:** a skill containing any executable script file (`.py/.js/.sh/.cjs/.ps1/.mjs`) is machine-only.
-2. **Overrides:** `force-exclude.txt` removes markdown-only skills that still need CLIs/MCP/git (e.g. `gh-cli`, `codeql`); `force-include.txt` can rescue a skill whose scripts are optional. Edit these lists, then rebuild.
+2. **Overrides:** `force-exclude.txt` removes markdown-only skills that still need CLIs/MCP/git (e.g. `gh-cli`, `codeql`); `license-exclude.txt` removes guidance-only skills whose license is unknown or that must not be redistributed; `force-include.txt` can rescue a skill whose scripts are optional. Edit these lists, then rebuild.
 
 ## How to use in Claude.ai chat
 

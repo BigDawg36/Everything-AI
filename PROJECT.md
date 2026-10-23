@@ -50,6 +50,7 @@ Everything-AI/
     ├── EXCLUDED.md              # GENERATED list of the machine-only skills (44)
     ├── force-include.txt        # classifier overrides (script-bearing but chat-usable)
     ├── force-exclude.txt        # classifier overrides (markdown-only but machine-bound)
+    ├── license-exclude.txt      # guidance-only skills omitted for license/provenance
     └── dist/everything-ai-chat-skills.zip   # committed build output (~6 MB)
 ```
 
@@ -103,7 +104,7 @@ There are two consumption paths and one build path:
 Key mechanics:
 
 - **Skill triggering is entirely driven by the `description:` frontmatter field.** Claude Code (and Claude.ai) match the user's message against these descriptions. A skill with a bad or missing description is effectively invisible or mis-fires.
-- **The chat/code split is a heuristic plus overrides**: `build-bundle.sh` marks a skill "machine-only" if it contains a file with an executable-script extension, then applies `force-exclude.txt` (markdown-only skills that still need CLIs/MCP/git) and `force-include.txt`.
+- **The chat/code split is a heuristic plus overrides**: `build-bundle.sh` marks a skill "machine-only" if it contains a file with an executable-script extension, then applies `force-exclude.txt` (markdown-only skills that still need CLIs/MCP/git) and `force-include.txt`. `license-exclude.txt` omits guidance-only skills whose license is unknown or that must not be redistributed; that reason is separate from the machine-only sections in `EXCLUDED.md`.
 - **`MANIFEST.md` and `EXCLUDED.md` are generated** by `build-bundle.sh` on every build (descriptions parsed from frontmatter). Never hand-edit them.
 - **The sales suite is its own mini-architecture**: `sales/SKILL.md` is an orchestrator exposing `/sales <subcommand>`; `sales-prospect` fans out to the five subagents in `.claude/agents/` (company, competitive, contacts, opportunity, strategy research), each of which owns a weighted slice of a prospect score, aggregated into `PROSPECT-ANALYSIS.md`.
 
@@ -140,7 +141,7 @@ Key mechanics:
 2. **The bundle README's directory tree describes the *zip's* contents, not the repo.** `chat-skills-bundle/skills/` and `chat-skills-bundle/zips/` do not exist on disk; they exist only inside `dist/everything-ai-chat-skills.zip` (the build assembles them in a temp dir).
 3. **The 14 sales-suite SKILL.md files historically had no YAML frontmatter** (fixed 2026-07-16; `validate-skills.sh` now enforces it). Their bodies still assume `/sales <subcommand>` invocation wired to the orchestrator.
 4. **`obsidian-second-brain` is a complete vendored source repo**, including its own `.github/workflows/`, `install.sh` (which symlinks into `~/.claude/`), and a multi-platform adapter build system. Its upstream instructions live in `UPSTREAM-CLAUDE.md` (renamed from `CLAUDE.md` to avoid confusion with this repo's).
-5. **Some markdown-only skills still need a machine.** The extension heuristic can't see CLI/MCP requirements, so `force-exclude.txt` keeps `gh-cli`, `codeql`, `chrome-mcp-troubleshooting`, the `setup-*-mcp` skills, and the git-worktree skills out of the chat bundle. Extend that list when importing similar skills.
+5. **Some markdown-only skills still need a machine.** The extension heuristic can't see CLI/MCP requirements, so `force-exclude.txt` keeps `gh-cli`, `codeql`, `chrome-mcp-troubleshooting`, the `setup-*-mcp` skills, and the git-worktree skills out of the chat bundle. Extend that list when importing similar skills. Guidance-only skills held back solely for an unknown license or a redistribution limit go in `license-exclude.txt` instead, so `EXCLUDED.md` does not describe them as needing a runtime.
 6. **Skill trigger collisions are real.** With hundreds of descriptions in play, overlapping skills compete for the same user phrasings. The worst pairs were disambiguated in 2026-07 (secondary skill's description now defers to the primary: `caveman-commit`→`commit`, `caveman-review`→`review-pr`, `superpowers-*`→ unprefixed, `brainstorm`→`brainstorming`); keep new imports out of existing trigger space.
 7. **The remote's default branch is a `claude/…` working branch**, not `main` — there is no `main` branch on the Everything-AI remote at all. Check `git remote show origin` before assuming branch conventions.
 8. **Numbers drift wherever they're hardcoded.** The manifests are now generated and the bundle README count-free, but any prose that names a skill count (including any in this file) goes stale on the next import. Trust `build-bundle.sh` output and `validate-skills.sh` over prose.

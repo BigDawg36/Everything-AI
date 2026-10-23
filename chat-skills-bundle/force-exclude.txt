@@ -1,6 +1,8 @@
 # Skills excluded from the Claude.ai chat bundle even though they contain no
 # script files: they require CLIs, MCP servers, a git checkout, or a local
 # browser/OS that the chat sandbox does not provide. One name per line.
+# Guidance-only skills omitted solely for license or provenance belong in
+# license-exclude.txt, not here.
 gh-cli
 codeql
 git-worktrees
@@ -15,6 +17,4 @@ imsc-monday-edge
 imsc-course-to-adoption
 imsc-coding-guide-qa
 imsc-simulator-scenario-audit
-prompt-master
-remove-ai-marks
 imsc-surgeon-target-list
